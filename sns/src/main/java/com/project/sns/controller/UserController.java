@@ -24,14 +24,20 @@ public class UserController {
 	}
 	
 	@PostMapping(value="/createUser")
-	public ModelAndView createUserPost(@ModelAttribute UserDTO dto) {
-		ModelAndView mav = new ModelAndView();
+	public String createUserPost(@ModelAttribute UserDTO dto) {
+//		ModelAndView mav = new ModelAndView();
+//		String userId = this.userService.createUser(dto);
+//		if(userId == null) {
+//			mav.setViewName("redirect:/createUser");
+//		} else {
+//			mav.setViewName("/user/test");
+//		}
+//		return mav;
 		String userId = this.userService.createUser(dto);
 		if(userId == null) {
-			mav.setViewName("redirect:/createUser");
+			return "/user/createUser";
 		} else {
-			mav.setViewName("redirect:/userInfo?user_id=" + dto.getUser_id());
+			return "/user/test";
 		}
-		return mav;
 	}
 }

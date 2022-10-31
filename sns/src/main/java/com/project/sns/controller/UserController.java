@@ -62,14 +62,11 @@ public class UserController {
 			System.out.println("로그인 성공");
 			return "redirect:test";
 		} else {
+			System.out.println("로그인 실패");
 			session.setAttribute("user_id", null);
+			return "redirect:login";
 		}
 		
-		return "redirect:login";
 	}
-	
-	@GetMapping(value="/test")
-	public String test() {
-		return "/user/test";
-	}
+
 }

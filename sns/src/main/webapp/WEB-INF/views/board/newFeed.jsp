@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>피드 작성</title>
 </head>
 <body>
-성공 테스트페이지
+
 </body>
 </html>

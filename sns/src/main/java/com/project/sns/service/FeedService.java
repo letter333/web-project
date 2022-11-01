@@ -8,4 +8,6 @@ public interface FeedService {
 
 	int newFeed(FeedDTO dto);
 
+	void fileUpload(String originalFileName, String saveFileName, long fileSize, String feed_id);
+
 }

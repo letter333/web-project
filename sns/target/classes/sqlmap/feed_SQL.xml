@@ -14,4 +14,12 @@
 		select max(feed_id) from feed
 	]]>
 </select>
+
+<insert id="file_upload" parameterType="HashMap">
+	<![CDATA[
+		insert into file_table (original_name, file_name, file_size, feed_id)
+		values
+		(#{original_name}, #{file_name}, #{file_size}, #{feed_id})
+	]]>
+</insert>
 </mapper>

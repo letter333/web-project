@@ -15,7 +15,7 @@ public class FeedDAO {
 		return this.sqlSessionTemplate.insert("feed.new_feed", dto);
 	}
 	
-	public String getFeedCount() {
-		return this.sqlSessionTemplate.selectOne("feed.get_feed_count");
+	public String getFeedMax() {
+		return this.sqlSessionTemplate.selectOne("feed.get_feed_max");
 	}
 }

@@ -9,9 +9,9 @@
 	]]>
 </insert>
 
-<select id="get_feed_count" resultType="string">
+<select id="get_feed_max" resultType="string">
 	<![CDATA[
-		select count(*) from feed
+		select max(feed_id) from feed
 	]]>
 </select>
 </mapper>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.sns.dto.LoginDTO;
 import com.project.sns.dto.UserDTO;
@@ -51,7 +52,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value="/login")
-	public String loginPost(LoginDTO dto, HttpServletRequest request) {
+	public String loginPost(LoginDTO dto, HttpServletRequest request, RedirectAttributes rttr) {
 		PasswordEncoder p = new BCryptPasswordEncoder();
 		
 		HttpSession session = request.getSession();
@@ -63,7 +64,9 @@ public class UserController {
 			return "redirect:test";
 		} else {
 			System.out.println("로그인 실패");
+			rttr.addFlashAttribute("message", false);
 			session.setAttribute("user_id", null);
+			
 			return "redirect:login";
 		}
 		

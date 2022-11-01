@@ -4,7 +4,7 @@ import com.project.sns.dto.FeedDTO;
 
 public interface FeedService {
 
-	String getFeedCount();
+	String getFeedMax();
 
 	int newFeed(FeedDTO dto);
 

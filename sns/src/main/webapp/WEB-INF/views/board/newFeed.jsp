@@ -7,6 +7,11 @@
 <title>피드 작성</title>
 </head>
 <body>
-
+<form method="post">
+<input type="text" name="feed_user_id" value="${user_id }" />
+<input type="text" name="feed_title" />
+<input type="text" name="feed_content" />
+<input type="submit" value="작성하기" />
+</form>
 </body>
 </html>

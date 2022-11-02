@@ -3,15 +3,15 @@ package com.project.sns.dto;
 import java.sql.Timestamp;
 
 public class FeedDTO {
-	private int feed_id;
+	private Integer feed_id;
 	private String feed_title;
 	private String feed_content;
 	private String feed_user_id;
 	private String feed_created_at;
-	public int getFeed_id() {
+	public Integer getFeed_id() {
 		return feed_id;
 	}
-	public void setFeed_id(int feed_id) {
+	public void setFeed_id(Integer feed_id) {
 		this.feed_id = feed_id;
 	}
 	public String getFeed_title() {
@@ -38,7 +38,7 @@ public class FeedDTO {
 	public void setFeed_created_at(String feed_created_at) {
 		this.feed_created_at = feed_created_at;
 	}
-	public FeedDTO(int feed_id, String feed_title, String feed_content, String feed_user_id, String feed_created_at) {
+	public FeedDTO(Integer feed_id, String feed_title, String feed_content, String feed_user_id, String feed_created_at) {
 		super();
 		this.feed_id = feed_id;
 		this.feed_title = feed_title;

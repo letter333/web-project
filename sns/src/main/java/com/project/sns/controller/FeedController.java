@@ -26,8 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.sns.dto.FeedDTO;
+import com.project.sns.dto.UploadFileDTO;
 import com.project.sns.service.FeedService;
 
 @Controller
@@ -45,10 +47,15 @@ public class FeedController {
 	public String newFeedPost(@ModelAttribute FeedDTO dto, HttpServletRequest req, MultipartHttpServletRequest mhsq) throws IllegalStateException, IOException {
 		HttpSession session = req.getSession();
 		
-		String feed_id = feedService.getFeedMax(); 
+		Integer feed_id = feedService.getFeedMax();
+		
+		if(feed_id == null) {
+			feed_id = 0;
+		}
+		
 		int affectRowCount = feedService.newFeed(dto);
 		
-		String realFolder = "C:\\Users\\KB\\Desktop\\OSR\\web-project\\sns\\src\\main\\resources\\upload";
+		String realFolder = "C:/Users/KB/Desktop/OSR/web-project/sns/src/main/webapp/resources/upload/";
 		File dir = new File(realFolder);
 		if(!dir.isDirectory()) {
 			dir.mkdirs();
@@ -65,21 +72,33 @@ public class FeedController {
 				String saveFileName = genId + "." + FilenameUtils.getExtension(originalFileName);
 				
 				String savePath = realFolder + saveFileName;
-				
 				long fileSize = mf.get(i).getSize();
 				
 				mf.get(i).transferTo(new File(savePath));
+				System.out.println(savePath);
 				
-				feedService.fileUpload(originalFileName, saveFileName, fileSize, feed_id);
+				feedService.fileUpload(originalFileName, saveFileName, savePath, fileSize, feed_id + 1);
 			}
 		}
 		
 		if(affectRowCount == 1) {
-			return "redirect:feed?feed_id=" + (Integer.parseInt(feed_id) + 1);
+			return "redirect:feed?feed_id=" + (feed_id + 1);
 		} else {
 			return "redirect:/";
 		}
 		
+	}
+	
+	@GetMapping(value="/feed")
+	public ModelAndView getFeed(@RequestParam String feed_id) {
+		ModelAndView mav = new ModelAndView();
+		FeedDTO feed = feedService.getFeed(feed_id);
+		List<UploadFileDTO> uploadFileList = feedService.getUploadFile(feed_id);
+		
+		mav.addObject("Feed", feed);
+		mav.addObject("uploadFileList", uploadFileList);
+		mav.setViewName("/board/feed");
+		return mav;
 	}
 	
 	@GetMapping(value="/test")

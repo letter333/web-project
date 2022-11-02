@@ -9,7 +9,7 @@
 	]]>
 </insert>
 
-<select id="get_feed_max" resultType="string">
+<select id="get_feed_max" resultType="integer">
 	<![CDATA[
 		select max(feed_id) from feed
 	]]>
@@ -17,9 +17,21 @@
 
 <insert id="file_upload" parameterType="HashMap">
 	<![CDATA[
-		insert into file_table (original_name, file_name, file_size, feed_id)
+		insert into file_table (original_name, file_name, file_save_path, file_size, feed_id)
 		values
-		(#{original_name}, #{file_name}, #{file_size}, #{feed_id})
+		(#{original_name}, #{file_name}, #{file_save_path}, #{file_size}, #{feed_id})
 	]]>
 </insert>
+
+<select id="get_feed" parameterType="string" resultType="com.project.sns.dto.FeedDTO">
+	<![CDATA[
+		select * from feed where feed_id = #{feed_id}
+	]]>
+</select>
+
+<select id="get_upload_file" parameterType="string" resultType="com.project.sns.dto.UploadFileDTO">
+	<![CDATA[
+		select * from file_table where feed_id = #{feed_id}
+	]]>
+</select>
 </mapper>

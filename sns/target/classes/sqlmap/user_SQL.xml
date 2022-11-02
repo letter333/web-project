@@ -16,12 +16,10 @@
 	]]>
 </select>
 
-<insert id="new_feed" parameterType="com.project.sns.dto.FeedDTO">
+<select id="check_join" parameterType="com.project.sns.dto.UserDTO" resultType="int">
 	<![CDATA[
-		insert into feed(feed_title, feed_content, feed_user_id) 
-		values 
-		(#{feed_title}, #{feed_content}, #{feed_user_id});
+		select count(*) from user where user_id = #{user_id}
 	]]>
-</insert>
+</select>
 </mapper>
   

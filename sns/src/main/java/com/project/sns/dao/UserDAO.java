@@ -19,4 +19,8 @@ public class UserDAO {
 	public String login(LoginDTO dto) {
 		return this.sqlSessionTemplate.selectOne("user.login", dto);
 	}
+	
+	public int checkJoin(UserDTO dto) {
+		return this.sqlSessionTemplate.selectOne("user.check_join", dto);
+	}
 }

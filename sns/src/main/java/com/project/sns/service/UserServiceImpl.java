@@ -30,7 +30,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public String login(LoginDTO dto) {
-		System.out.println(System.getProperty("user.home"));
 		return userDao.login(dto);
+	}
+	
+	@Override
+	public int checkJoin(UserDTO dto) {
+		return userDao.checkJoin(dto);
 	}
 }

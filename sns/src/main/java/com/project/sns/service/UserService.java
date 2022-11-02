@@ -11,4 +11,6 @@ public interface UserService {
 
 	String login(LoginDTO dto);
 
+	int checkJoin(UserDTO dto);
+
 }

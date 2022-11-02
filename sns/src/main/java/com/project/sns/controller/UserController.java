@@ -29,15 +29,7 @@ public class UserController {
 	}
 	
 	@PostMapping(value="/join")
-	public String createUserPost(@ModelAttribute UserDTO dto) {
-//		ModelAndView mav = new ModelAndView();
-//		String userId = this.userService.createUser(dto);
-//		if(userId == null) {
-//			mav.setViewName("redirect:/createUser");
-//		} else {
-//			mav.setViewName("/user/test");
-//		}
-//		return mav;
+	public String createUserPost(UserDTO dto) {
 		String userId = this.userService.createUser(dto);
 		if(userId == null) {
 			return "/user/join";
@@ -46,13 +38,20 @@ public class UserController {
 		}
 	}
 	
+	// 회원가입 페이지 구현 후 아이디 중복체크 완성하기 
+	@PostMapping(value="idCheck")
+	public int idCheck(UserDTO dto) {
+		int result = userService.checkJoin(dto);
+		return result;
+	}
+	
 	@GetMapping(value="/login")
 	public String login() {
 		return "/user/login";
 	}
 	
 	@PostMapping(value="/login")
-	public String loginPost(LoginDTO dto, HttpServletRequest request, RedirectAttributes rttr) {
+	public String loginPost(@ModelAttribute LoginDTO dto, HttpServletRequest request, RedirectAttributes rttr) {
 		PasswordEncoder p = new BCryptPasswordEncoder();
 		
 		HttpSession session = request.getSession();

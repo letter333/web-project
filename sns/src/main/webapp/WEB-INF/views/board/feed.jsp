@@ -16,7 +16,7 @@ height: 100px;
 <body>
 <c:forEach var="uploadFile" items="${uploadFileList }">
 <tr>
-<td><img src="/resources/upload/${uploadFile.file_name }" alt="" /></td>
+<td><img src="/resources/uploadImg/${uploadFile.file_name }" alt="" /></td>
 </tr>
 		
 </c:forEach>

@@ -44,7 +44,7 @@ public class FeedController {
 	
 	@Transactional
 	@PostMapping(value="/new_feed")
-	public String newFeedPost(@ModelAttribute FeedDTO dto, HttpServletRequest req, MultipartHttpServletRequest mhsq) throws IllegalStateException, IOException {
+	public String newFeedPost(FeedDTO dto, HttpServletRequest req, MultipartHttpServletRequest mhsq) throws IllegalStateException, IOException {
 		HttpSession session = req.getSession();
 		
 		Integer feed_id = feedService.getFeedMax();
@@ -55,7 +55,7 @@ public class FeedController {
 		
 		int affectRowCount = feedService.newFeed(dto);
 		
-		String realFolder = "C:/Users/KB/Desktop/OSR/web-project/sns/src/main/webapp/resources/upload/";
+		String realFolder = req.getSession().getServletContext().getRealPath("/") + "/resources/uploadImg/"; //서버 경로 + 저장 경로
 		File dir = new File(realFolder);
 		if(!dir.isDirectory()) {
 			dir.mkdirs();

@@ -37,6 +37,38 @@ public class FeedController {
 	@Autowired
 	FeedService feedService;
 	
+	@GetMapping(value="/")
+	public ModelAndView mainGet(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		ModelAndView mav = new ModelAndView();
+		
+		List<FeedDTO> feedList = feedService.getFeed();
+		List<UploadFileDTO> uploadFileList = feedService.getUploadFile();
+		
+		if(session.getAttribute("user_id") == null) {
+			session.setAttribute("user_id", "");
+		}
+		
+		mav.addObject("feedList", feedList);
+		mav.addObject("uploadFileList", uploadFileList);
+		mav.setViewName("/board/main");
+	
+		return mav;
+	}
+	
+//	@GetMapping(value="/feed")
+//	public ModelAndView getFeed(@RequestParam String feed_id) {
+//		ModelAndView mav = new ModelAndView();
+//		FeedDTO feed = feedService.getFeed(feed_id);
+//		List<UploadFileDTO> uploadFileList = feedService.getUploadFile(feed_id);
+//		
+//		mav.addObject("Feed", feed);
+//		mav.addObject("uploadFileList", uploadFileList);
+//		mav.setViewName("/board/feed");
+//		return mav;
+//	}
+//	
+	
 	@GetMapping(value="/new_feed")
 	public String newFeed() {
 		return "/board/newFeed";
@@ -87,22 +119,5 @@ public class FeedController {
 			return "redirect:/";
 		}
 		
-	}
-	
-	@GetMapping(value="/feed")
-	public ModelAndView getFeed(@RequestParam String feed_id) {
-		ModelAndView mav = new ModelAndView();
-		FeedDTO feed = feedService.getFeed(feed_id);
-		List<UploadFileDTO> uploadFileList = feedService.getUploadFile(feed_id);
-		
-		mav.addObject("Feed", feed);
-		mav.addObject("uploadFileList", uploadFileList);
-		mav.setViewName("/board/feed");
-		return mav;
-	}
-	
-	@GetMapping(value="/test")
-	public String test() {
-		return "/user/test";
 	}
 }

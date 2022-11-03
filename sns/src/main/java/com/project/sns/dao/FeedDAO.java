@@ -27,11 +27,11 @@ public class FeedDAO {
 		return this.sqlSessionTemplate.insert("feed.file_upload", map);
 	}
 	
-	public FeedDTO getFeed(String feed_id) {
-		return this.sqlSessionTemplate.selectOne("feed.get_feed", feed_id);
+	public List<FeedDTO> getFeed() {
+		return this.sqlSessionTemplate.selectList("feed.get_feed");
 	}
 
-	public List<UploadFileDTO> getUploadFile(String feed_id) {
-		return this.sqlSessionTemplate.selectList("feed.get_upload_file", feed_id);
+	public List<UploadFileDTO> getUploadFile() {
+		return this.sqlSessionTemplate.selectList("feed.get_upload_file");
 	}
 }

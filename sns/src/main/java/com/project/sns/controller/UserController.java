@@ -60,7 +60,7 @@ public class UserController {
 		if(p.matches(dto.getUser_pw(), login)) {
 			session.setAttribute("user_id", dto.getUser_id());
 			System.out.println("로그인 성공");
-			return "redirect:test";
+			return "redirect:/";
 		} else {
 			System.out.println("로그인 실패");
 			rttr.addFlashAttribute("message", false);
@@ -69,6 +69,14 @@ public class UserController {
 			return "redirect:login";
 		}
 		
+	}
+	
+	@GetMapping(value="/logout")
+	public String logoutGet(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		session.invalidate();
+		
+		return "redirect:/";
 	}
 
 }

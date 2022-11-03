@@ -37,13 +37,13 @@ public class FeedServiceImpl implements FeedService {
 	}
 	
 	@Override
-	public FeedDTO getFeed(String feed_id) {
-		return feedDao.getFeed(feed_id);
+	public List<FeedDTO> getFeed() {
+		return feedDao.getFeed();
 	}
 
 	@Override
-	public List<UploadFileDTO> getUploadFile(String feed_id) {
-		return feedDao.getUploadFile(feed_id);
+	public List<UploadFileDTO> getUploadFile() {
+		return feedDao.getUploadFile();
 	}
 }
 

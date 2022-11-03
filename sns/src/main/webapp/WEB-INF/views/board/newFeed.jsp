@@ -13,6 +13,7 @@
 <input type="text" name="feed_content" />
 <input type="file" name="uploadFile" />
 <input type="file" name="uploadFile" />
+<input type="file" name="uploadFile" />
 <input type="submit" value="작성하기" />
 </form>
 </body>

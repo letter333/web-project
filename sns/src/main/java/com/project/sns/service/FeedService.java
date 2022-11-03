@@ -11,9 +11,9 @@ public interface FeedService {
 
 	int newFeed(FeedDTO dto);
 
-	FeedDTO getFeed(String feed_id);
+	List<FeedDTO> getFeed();
 
-	List<UploadFileDTO> getUploadFile(String feed_id);
+	List<UploadFileDTO> getUploadFile();
 
 	void fileUpload(String originalFileName, String saveFileName, String savePath, long fileSize, int feed_id);
 

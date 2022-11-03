@@ -25,13 +25,13 @@
 
 <select id="get_feed" parameterType="string" resultType="com.project.sns.dto.FeedDTO">
 	<![CDATA[
-		select * from feed where feed_id = #{feed_id}
+		select * from feed order by feed_id desc
 	]]>
 </select>
 
-<select id="get_upload_file" parameterType="string" resultType="com.project.sns.dto.UploadFileDTO">
+<select id="get_upload_file" resultType="com.project.sns.dto.UploadFileDTO">
 	<![CDATA[
-		select * from file_table where feed_id = #{feed_id}
+		select * from file_table
 	]]>
 </select>
 </mapper>

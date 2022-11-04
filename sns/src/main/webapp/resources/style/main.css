@@ -1,0 +1,78 @@
+.wrapper {
+	width: 1080px;
+}
+
+i {
+	margin: 5px;
+}
+
+.carousel-inner>.carousel-item>img {
+	top: 0;
+	left: 0;
+	height: 500px;
+}
+
+.profile-header {
+	height: 70px;
+	display: flex;
+	align-items: center;
+}
+
+.content {
+	min-height: 100px;
+}
+
+.profileImg {
+	width: 50px;
+	height: 50px;
+	border: 1px solid;
+}
+
+.carousel-btn {
+	height: 500px;
+	margin-top: 70px;
+}
+
+.time {
+	font-size: 6px;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	color: black;
+}
+
+.comment-icons {
+	bottom: 10px;
+	right: 5%;
+}
+
+#toggle {
+	cursor: pointer;
+}
+
+.comment-input {
+	width: 93%;
+	display: inline-block;
+}
+
+.comment-wrapper {
+	padding: 0;
+	margin: 10px;
+	margin-right: 5px;
+}
+
+.comment-wrapper>button {
+	width: 5%;
+}
+
+.send-icon {
+	padding: 0;
+	margin: 0;
+	border: 0;
+	outline: none;
+	background-color: transparent;
+}

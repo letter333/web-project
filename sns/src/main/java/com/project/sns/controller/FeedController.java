@@ -29,7 +29,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.project.sns.dto.CommentCountDTO;
 import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
 import com.project.sns.dto.UploadFileDTO;
@@ -49,12 +48,10 @@ public class FeedController {
 		List<UploadFileDTO> uploadFileList = feedService.getUploadFile();
 	
 		List<CommentDTO> commentList = feedService.getComment();
-		List<CommentCountDTO> commentCountList = feedService.getCommentCount();
-		
+				
 		mav.addObject("feedList", feedList);
 		mav.addObject("uploadFileList", uploadFileList);
 		mav.addObject("commentList", commentList);
-		mav.addObject("commentCountList", commentCountList);
 		mav.setViewName("/board/main");
 	
 		return mav;
@@ -131,6 +128,13 @@ public class FeedController {
 	@PostMapping(value="/new_comment")
 	public String newComment(CommentDTO comment) {
 		feedService.newComment(comment);
+		
+		return "redirect:/";
+	}
+	
+	@PostMapping(value="/delete_comment")
+	public String deleteComment(@RequestParam String comment_id) {
+		feedService.deleteComment(comment_id);
 		
 		return "redirect:/";
 	}

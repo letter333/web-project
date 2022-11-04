@@ -1,9 +1,18 @@
 package com.project.sns.dto;
 
 public class CommentDTO {
+	private int comment_id;
 	private int comment_feed_id;
 	private String comment_user_id;
 	private String comment_content;
+	
+	
+	public int getComment_id() {
+		return comment_id;
+	}
+	public void setComment_id(int comment_id) {
+		this.comment_id = comment_id;
+	}
 	public int getComment_feed_id() {
 		return comment_feed_id;
 	}

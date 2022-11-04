@@ -8,6 +8,15 @@ public class FeedDTO {
 	private String feed_content;
 	private String feed_user_id;
 	private String feed_created_at;
+	private int feed_comment_count;
+	
+	
+	public int getFeed_comment_count() {
+		return feed_comment_count;
+	}
+	public void setFeed_comment_count(int feed_comment_count) {
+		this.feed_comment_count = feed_comment_count;
+	}
 	public Integer getFeed_id() {
 		return feed_id;
 	}

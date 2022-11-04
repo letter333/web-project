@@ -2,7 +2,6 @@ package com.project.sns.service;
 
 import java.util.List;
 
-import com.project.sns.dto.CommentCountDTO;
 import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
 import com.project.sns.dto.UploadFileDTO;
@@ -23,6 +22,6 @@ public interface FeedService {
 
 	List<CommentDTO> getComment();
 
-	List<CommentCountDTO> getCommentCount();
+	int deleteComment(String comment_id);
 
 }

@@ -35,9 +35,14 @@
 	]]>
 </select>
 
-<insert id="new_comment" parameterType="com.project.sns.dto.CommentDTO">
+<insert id="new_comment" statementType="CALLABLE" parameterType="com.project.sns.dto.CommentDTO">
 	<![CDATA[
-		insert into comment(comment_feed_id, comment_user_id, comment_content) values (#{comment_feed_id}, #{comment_user_id}, #{comment_content})
+		{ call insert_comment(
+		#{comment_feed_id},
+		#{comment_user_id},
+		#{comment_content}
+		)
+		}
 	]]>
 </insert>
 
@@ -47,7 +52,9 @@
 	]]>
 </select>
 
-<select id="get_comment_count" resultType="com.project.sns.dto.CommentCountDTO">
-	select count(comment_feed_id) comment_count, comment_feed_id from comment left join feed on comment_feed_id = feed_id group by comment_feed_id;
-</select>
+<delete id="delete_comment" parameterType="string">
+	<![CDATA[
+		delete from comment where comment_id = #{comment_id}
+	]]>
+</delete>
 </mapper>

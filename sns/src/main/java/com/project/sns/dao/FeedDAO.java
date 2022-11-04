@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.project.sns.dto.CommentCountDTO;
+import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
 import com.project.sns.dto.UploadFileDTO;
 
@@ -33,5 +35,17 @@ public class FeedDAO {
 
 	public List<UploadFileDTO> getUploadFile() {
 		return this.sqlSessionTemplate.selectList("feed.get_upload_file");
+	}
+	
+	public int newComment(CommentDTO dto) {
+		return this.sqlSessionTemplate.insert("feed.new_comment", dto);
+	}
+	
+	public List<CommentDTO> getComment() {
+		return this.sqlSessionTemplate.selectList("feed.get_comment");
+	}
+	
+	public List<CommentCountDTO> getCommentCount() {
+		return this.sqlSessionTemplate.selectList("feed.get_comment_count");
 	}
 }

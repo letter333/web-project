@@ -27,7 +27,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.project.sns.dto.CommentCountDTO;
+import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
 import com.project.sns.dto.UploadFileDTO;
 import com.project.sns.service.FeedService;
@@ -44,13 +47,14 @@ public class FeedController {
 		
 		List<FeedDTO> feedList = feedService.getFeed();
 		List<UploadFileDTO> uploadFileList = feedService.getUploadFile();
-		
-		if(session.getAttribute("user_id") == null) {
-			session.setAttribute("user_id", "");
-		}
+	
+		List<CommentDTO> commentList = feedService.getComment();
+		List<CommentCountDTO> commentCountList = feedService.getCommentCount();
 		
 		mav.addObject("feedList", feedList);
 		mav.addObject("uploadFileList", uploadFileList);
+		mav.addObject("commentList", commentList);
+		mav.addObject("commentCountList", commentCountList);
 		mav.setViewName("/board/main");
 	
 		return mav;
@@ -76,7 +80,7 @@ public class FeedController {
 	
 	@Transactional
 	@PostMapping(value="/new_feed")
-	public String newFeedPost(FeedDTO dto, HttpServletRequest req, MultipartHttpServletRequest mhsq) throws IllegalStateException, IOException {
+	public String newFeedPost(FeedDTO dto, HttpServletRequest req, MultipartHttpServletRequest mhsq, RedirectAttributes rttr) throws IllegalStateException, IOException {
 		HttpSession session = req.getSession();
 		
 		Integer feed_id = feedService.getFeedMax();
@@ -114,10 +118,20 @@ public class FeedController {
 		}
 		
 		if(affectRowCount == 1) {
-			return "redirect:feed?feed_id=" + (feed_id + 1);
-		} else {
+//			return "redirect:feed?feed_id=" + (feed_id + 1);
+//		} else {
 			return "redirect:/";
+		} else {
+			rttr.addFlashAttribute("message", false);
+			return "redirect:new_feed";
 		}
 		
+	}
+	
+	@PostMapping(value="/new_comment")
+	public String newComment(CommentDTO comment) {
+		feedService.newComment(comment);
+		
+		return "redirect:/";
 	}
 }

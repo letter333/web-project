@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.sns.dao.FeedDAO;
+import com.project.sns.dto.CommentCountDTO;
+import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
 import com.project.sns.dto.UploadFileDTO;
 
@@ -44,6 +46,21 @@ public class FeedServiceImpl implements FeedService {
 	@Override
 	public List<UploadFileDTO> getUploadFile() {
 		return feedDao.getUploadFile();
+	}
+	
+	@Override
+	public int newComment(CommentDTO dto) {
+		return feedDao.newComment(dto);
+	}
+	
+	@Override
+	public List<CommentDTO> getComment() {
+		return feedDao.getComment();
+	}
+	
+	@Override
+	public List<CommentCountDTO> getCommentCount() {
+		return feedDao.getCommentCount();
 	}
 }
 

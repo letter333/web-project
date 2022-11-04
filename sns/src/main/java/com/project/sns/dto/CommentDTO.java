@@ -1,0 +1,27 @@
+package com.project.sns.dto;
+
+public class CommentDTO {
+	private int comment_feed_id;
+	private String comment_user_id;
+	private String comment_content;
+	public int getComment_feed_id() {
+		return comment_feed_id;
+	}
+	public void setComment_feed_id(int comment_feed_id) {
+		this.comment_feed_id = comment_feed_id;
+	}
+	public String getComment_user_id() {
+		return comment_user_id;
+	}
+	public void setComment_user_id(String comment_user_id) {
+		this.comment_user_id = comment_user_id;
+	}
+	public String getComment_content() {
+		return comment_content;
+	}
+	public void setComment_content(String comment_content) {
+		this.comment_content = comment_content;
+	}
+	
+	
+}

@@ -1,6 +1,7 @@
 package com.project.sns.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
@@ -22,6 +23,6 @@ public interface FeedService {
 
 	List<CommentDTO> getComment();
 
-	int deleteComment(String comment_id);
+	int deleteComment(Map<String, Object> map);
 
 }

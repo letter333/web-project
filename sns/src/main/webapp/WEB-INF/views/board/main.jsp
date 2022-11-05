@@ -103,6 +103,7 @@
 								<p class="m-2">${comment.comment_user_id}:
 									${comment.comment_content }</p>
 								<form action="/delete_comment" method="post" id="comment_form">
+									<input type="hidden" name="comment_feed_id" value="${feed.feed_id }" />
 									<input type="hidden" name="comment_id" value="${comment.comment_id }" />
 									<button type="submit" >X</button>
 								</form>

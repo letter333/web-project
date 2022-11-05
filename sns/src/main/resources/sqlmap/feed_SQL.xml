@@ -52,9 +52,13 @@
 	]]>
 </select>
 
-<delete id="delete_comment" parameterType="string">
+<delete id="delete_comment" parameterType="hashMap">
 	<![CDATA[
-		delete from comment where comment_id = #{comment_id}
+		{ call delete_comment(
+		#{comment_id},
+		#{comment_feed_id}
+		)
+		}
 	]]>
 </delete>
 </mapper>

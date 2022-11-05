@@ -2,6 +2,7 @@ package com.project.sns.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,8 +59,8 @@ public class FeedServiceImpl implements FeedService {
 	}
 	
 	@Override
-	public int deleteComment(String comment_id) {
-		return feedDao.deleteComment(comment_id);
+	public int deleteComment(Map<String, Object> map) {
+		return feedDao.deleteComment(map);
 	}
 }
 

@@ -2,6 +2,7 @@ package com.project.sns.dao;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,7 +45,7 @@ public class FeedDAO {
 		return this.sqlSessionTemplate.selectList("feed.get_comment");
 	}
 		
-	public int deleteComment(String comment_id) {
-		return this.sqlSessionTemplate.delete("feed.delete_comment", comment_id);
+	public int deleteComment(Map<String, Object> map) {
+		return this.sqlSessionTemplate.delete("feed.delete_comment", map);
 	}
 }

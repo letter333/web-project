@@ -76,3 +76,9 @@ a:hover {
 	outline: none;
 	background-color: transparent;
 }
+
+.delete-btn {
+	border: 0;
+	outline: none;
+	background-color: transparent;
+}

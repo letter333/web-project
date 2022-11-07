@@ -44,7 +44,8 @@
 						<a href="/login"><i class="fa-solid fa-right-to-bracket fa-lg"></i></a>
 					</c:when>
 					<c:otherwise>
-						<a href="/logout"><i class="fa-solid fa-user fa-lg"></i></a>
+						<a href="/"><i class="fa-solid fa-user fa-lg"></i></a>
+						<a href="/logout"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a>
 					</c:otherwise>
 				</c:choose>
 			</div>
@@ -63,7 +64,18 @@
 							<div>${feed.feed_user_id }</div>
 							<div class="time">${feed.feed_created_at }</div>
 						</div>
-						<div class="ms-auto me-3">메뉴</div>
+						<c:if test="${user_id eq feed.feed_user_id }">
+							<div class="ms-auto me-3 d-flex">
+								<form action="modify_feed">
+									<input type="hidden" name="feed_id" value="${feed.feed_id }" />
+									<button type="submit" class="fa-solid fa-pen fa-sm"></button>
+								</form>
+								<form action="delete_feed" method="POST">
+									<input type="hidden" name="feed_id" value="${feed.feed_id }" />
+									<button type="submit" class="fa-solid fa-eraser fa-sm"></button>
+								</form>
+							</div>
+						</c:if>
 					</div>
 					<div class="carousel-inner">
 						<c:forEach var="uploadFile" items="${uploadFileList }">
@@ -103,11 +115,13 @@
 							<div class="row">
 								<p class="m-2 col-10">${comment.comment_user_id}:
 									${comment.comment_content }</p>
-								<form action="/delete_comment" method="post" id="comment_form" class="col-1 row text-center">
-									<input type="hidden" name="comment_feed_id" value="${feed.feed_id }" />
-									<input type="hidden" name="comment_id" value="${comment.comment_id }" />
-									<button class="delete-btn fa-solid fa-trash fa-sm" onclick="deleteComment(${comment.comment_id}, ${feed.feed_id })"></button>
-								</form>
+								<c:if test="${user_id eq comment.comment_user_id }">
+									<form action="/delete_comment" method="post" id="comment_form" class="col-1 row text-center">
+										<input type="hidden" name="comment_feed_id" value="${feed.feed_id }" />
+										<input type="hidden" name="comment_id" value="${comment.comment_id }" />
+										<button class="delete-btn fa-solid fa-eraser fa-sm" type="submit"></button>
+									</form>
+								</c:if>
 							</div>	
 							</c:if>
 						</c:forEach>
@@ -143,26 +157,6 @@
 		</div>
 		<div class="col-4 mt-5 ps-5">여기쯤 d3차트 하나?</div>
 	</div>
-	<script>
-	$(document).on('click', '.delete-btn', function deleteComment(comment_id, comment_feed_id) {
-		let offset = $(this).offset();
-		$.ajax({
-			url: 'delete_comment?comment_id='+comment_id+'&comment_feed_id='+comment_feed_id,
-			type: 'POST',
-			data: {
-				comment_id: comment_id,
-				comment_feed_id: comment_feed_id
-			},
-			complete: function() {
-				closeModal();
-				$('#comment_form').load(location.href+' #comment_form');
-				$("html, body").animate({scrollTop: offset.top});
-			}
-		})
-		return false;
-	})
-		
-	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"

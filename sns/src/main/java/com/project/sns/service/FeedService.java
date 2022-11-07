@@ -25,4 +25,8 @@ public interface FeedService {
 
 	int deleteComment(Map<String, Object> map);
 
+	int deleteFeed(String feed_id);
+
+	List<UploadFileDTO> getFeedUploadFile(String feed_id);
+
 }

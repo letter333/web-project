@@ -58,19 +58,6 @@ public class FeedController {
 		return mav;
 	}
 	
-//	@GetMapping(value="/feed")
-//	public ModelAndView getFeed(@RequestParam String feed_id) {
-//		ModelAndView mav = new ModelAndView();
-//		FeedDTO feed = feedService.getFeed(feed_id);
-//		List<UploadFileDTO> uploadFileList = feedService.getUploadFile(feed_id);
-//		
-//		mav.addObject("Feed", feed);
-//		mav.addObject("uploadFileList", uploadFileList);
-//		mav.setViewName("/board/feed");
-//		return mav;
-//	}
-//	
-	
 	@GetMapping(value="/new_feed")
 	public String newFeed() {
 		return "/board/newFeed";
@@ -116,8 +103,6 @@ public class FeedController {
 		}
 		
 		if(affectRowCount == 1) {
-//			return "redirect:feed?feed_id=" + (feed_id + 1);
-//		} else {
 			return "redirect:/";
 		} else {
 			rttr.addFlashAttribute("message", false);
@@ -138,6 +123,23 @@ public class FeedController {
 		
 		feedService.deleteComment(map);
 		
+		return "redirect:/";
+	}
+	
+	@PostMapping(value="/delete_feed")
+	public String deleteFeed(@RequestParam String feed_id, HttpServletRequest req) {
+		String realFolder = req.getSession().getServletContext().getRealPath("/") + "/resources/uploadImg/";
+		
+		List<UploadFileDTO> feedUploadFileList = feedService.getFeedUploadFile(feed_id);
+		
+		for (UploadFileDTO uploadFileDTO : feedUploadFileList) {
+			File file = new File(realFolder + uploadFileDTO.getFile_name());
+			if(file.exists()) {
+				file.delete();
+			}
+		}
+		
+		feedService.deleteFeed(feed_id);
 		return "redirect:/";
 	}
 }

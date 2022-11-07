@@ -62,5 +62,15 @@ public class FeedServiceImpl implements FeedService {
 	public int deleteComment(Map<String, Object> map) {
 		return feedDao.deleteComment(map);
 	}
+	
+	@Override
+	public int deleteFeed(String feed_id) {
+		return feedDao.deleteFeed(feed_id);
+	}
+	
+	@Override
+	public List<UploadFileDTO> getFeedUploadFile(String feed_id) {
+		return feedDao.getFeedUploadFile(feed_id);
+	}
 }
 

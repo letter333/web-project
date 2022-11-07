@@ -35,6 +35,12 @@
 	]]>
 </select>
 
+<select id="get_feed_upload_file" resultType="com.project.sns.dto.UploadFileDTO">
+	<![CDATA[
+		select * from file_table where feed_id = #{feed_id}
+	]]>
+</select>
+
 <insert id="new_comment" statementType="CALLABLE" parameterType="com.project.sns.dto.CommentDTO">
 	<![CDATA[
 		{ call insert_comment(
@@ -61,4 +67,14 @@
 		}
 	]]>
 </delete>
+
+<delete id="delete_feed" parameterType="string">
+	<![CDATA[
+		{ call delete_file(
+		#{feed_id}
+		)
+		}
+	]]>
+</delete>
+
 </mapper>

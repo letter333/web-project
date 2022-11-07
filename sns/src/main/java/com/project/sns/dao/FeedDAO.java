@@ -48,4 +48,12 @@ public class FeedDAO {
 	public int deleteComment(Map<String, Object> map) {
 		return this.sqlSessionTemplate.delete("feed.delete_comment", map);
 	}
+	
+	public int deleteFeed(String feed_id) {
+		return this.sqlSessionTemplate.delete("feed.delete_feed", feed_id);
+	}
+	
+	public List<UploadFileDTO> getFeedUploadFile(String feed_id) {
+		return this.sqlSessionTemplate.selectList("feed.get_feed_upload_file", feed_id);
+	}
 }

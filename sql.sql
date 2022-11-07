@@ -16,10 +16,10 @@ select * from user;
 
 create table feed(
 feed_id int auto_increment primary key,
-feed_title varchar(255) not null,
 feed_content text not null,
 feed_user_id varchar(30) not null,
 feed_comment_count int not null default 0,
+feed_last_feed_id int default 1,
 feed_created_at datetime not null default now()
 );
 drop table feed;
@@ -56,3 +56,6 @@ SELECT * FROM COMMENT;
 select * from feed;
 
 call delete_comment(6, 1);
+
+delete from file_table where feed_id = 2;
+delete from feed where feed_id = 2;

@@ -4,13 +4,19 @@ import java.sql.Timestamp;
 
 public class FeedDTO {
 	private Integer feed_id;
-	private String feed_title;
 	private String feed_content;
 	private String feed_user_id;
 	private String feed_created_at;
 	private int feed_comment_count;
+	private int feed_last_feed_id;
 	
 	
+	public int getFeed_last_feed_id() {
+		return feed_last_feed_id;
+	}
+	public void setFeed_last_feed_id(int feed_last_feed_id) {
+		this.feed_last_feed_id = feed_last_feed_id;
+	}
 	public int getFeed_comment_count() {
 		return feed_comment_count;
 	}
@@ -22,12 +28,6 @@ public class FeedDTO {
 	}
 	public void setFeed_id(Integer feed_id) {
 		this.feed_id = feed_id;
-	}
-	public String getFeed_title() {
-		return feed_title;
-	}
-	public void setFeed_title(String feed_title) {
-		this.feed_title = feed_title;
 	}
 	public String getFeed_content() {
 		return feed_content;
@@ -50,7 +50,6 @@ public class FeedDTO {
 	public FeedDTO(Integer feed_id, String feed_title, String feed_content, String feed_user_id, String feed_created_at) {
 		super();
 		this.feed_id = feed_id;
-		this.feed_title = feed_title;
 		this.feed_content = feed_content;
 		this.feed_user_id = feed_user_id;
 		this.feed_created_at = feed_created_at;

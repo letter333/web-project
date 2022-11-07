@@ -76,13 +76,14 @@ public class FeedController {
 		
 		int affectRowCount = feedService.newFeed(dto);
 		
-		String realFolder = req.getSession().getServletContext().getRealPath("/") + "/resources/uploadImg/"; //¼­¹ö °æ·Î + ÀúÀå °æ·Î
+		String realFolder = req.getSession().getServletContext().getRealPath("/") + "/resources/uploadImg/"; //ì„œë²„ ê²½ë¡œ + ì €ìž¥ ê²½ë¡œ
 		File dir = new File(realFolder);
 		if(!dir.isDirectory()) {
 			dir.mkdirs();
 		}
 		
 		List<MultipartFile> mf = mhsq.getFiles("uploadFile");
+		System.out.println(mf);
 		if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
 			
 		} else {

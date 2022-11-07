@@ -6,4 +6,4 @@ BEGIN
 
 delete from file_table where feed_id = param_feed_id;
 delete from feed where feed_id = param_feed_id;
-END $$	
+END $$

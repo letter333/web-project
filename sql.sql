@@ -1,3 +1,7 @@
+drop table comment;
+drop table feed;
+drop table user;
+drop table file_table;
 create table user(
 user_id varchar(30) primary key,
 user_pw varchar(255) not null,
@@ -10,7 +14,7 @@ user_interest varchar(30) default '',
 user_reg_date datetime not null default now()
 );
 
-drop table user;
+
 
 select * from user;
 
@@ -22,11 +26,11 @@ feed_comment_count int not null default 0,
 feed_last_feed_id int default 1,
 feed_created_at datetime not null default now()
 );
-drop table feed;
+
 select * from feed order by feed_id desc;
 select max(feed_id) from feed;
 
-drop table file_table;
+
 
 create table file_table (
 file_num int auto_increment primary key,
@@ -45,7 +49,7 @@ comment_content text not null,
 comment_created_at datetime default now()
 );
 
-drop table comment;
+
 
 select * from file_table;
 select * from file_table where feed_id = 6;

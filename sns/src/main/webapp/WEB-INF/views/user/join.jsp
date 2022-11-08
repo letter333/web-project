@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입</title>
+    <title>OHAll : 회원가입</title>
     <!--CSS-->
     <link rel="stylesheet" href="${path }/resources/style/join.css">
     <!--Iconscout CSS-->

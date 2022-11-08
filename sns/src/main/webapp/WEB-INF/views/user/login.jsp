@@ -7,7 +7,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>여기에 타이틀</title>
+<title>OHAll : 로그인</title>
 <link href="${path }/resources/style/common.css" rel="stylesheet"
 	type="text/css" />
 <link href="${path }/resources/style/login.css" rel="stylesheet"

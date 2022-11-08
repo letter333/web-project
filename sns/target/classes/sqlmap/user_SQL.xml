@@ -27,5 +27,18 @@
 		select * from user where user_id = #{user_id}
 	]]>
 </select>
+
+<select id="check_pw" parameterType="com.project.sns.dto.UserDTO" resultType="string">
+	<![CDATA[
+		select user_pw from user where user_id = #{user_id}
+	]]>
+</select>
+
+<update id="modify_user" parameterType="com.project.sns.dto.UserDTO">
+	<![CDATA[
+		update user set user_name = #{user_name}, user_gender = #{user_gender}, user_email = #{user_email}, user_phone = #{user_phone} where user_id = #{user_id}
+	]]>
+</update>
+
 </mapper>
   

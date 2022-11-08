@@ -16,6 +16,10 @@
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+	<div>
+		여기 프사
+	</div>
+
     <div class="container">
         <header>내 정보</header>
         <form action="user_modify" method="get">
@@ -25,8 +29,8 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>아이디</label>
-                            <input type="hidden" name="user_id" value="${data.user_id }" />
-                            <input type="text" id="user_id" dplaceholder="아이디" value="${data.user_id }" disabled>
+                            <input type="hidden" name="user_id" value="${user_id }" />
+                            <input type="text" id="user_id" dplaceholder="아이디" value="${user_id }" disabled>
                         </div>
                         <div class="input-field">
                             <label>이름</label>

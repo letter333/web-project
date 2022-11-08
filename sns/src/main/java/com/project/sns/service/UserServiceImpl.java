@@ -42,4 +42,14 @@ public class UserServiceImpl implements UserService {
 	public UserDTO getUser(String user_id) {
 		return userDao.getUser(user_id);
 	}
+	
+	@Override
+	public String checkPw(UserDTO dto) {
+		return userDao.checkPw(dto);
+	}
+	
+	@Override
+	public int modifyUser(UserDTO dto) {
+		return userDao.modifyUser(dto);
+	}
 }

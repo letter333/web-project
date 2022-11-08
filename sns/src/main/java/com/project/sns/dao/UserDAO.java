@@ -1,5 +1,7 @@
 package com.project.sns.dao;
 
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -26,5 +28,13 @@ public class UserDAO {
 	
 	public UserDTO getUser(String user_id) {
 		return this.sqlSessionTemplate.selectOne("user.get_user", user_id);
+	}
+	
+	public String checkPw(UserDTO dto) {
+		return this.sqlSessionTemplate.selectOne("user.check_pw", dto);
+	}
+	
+	public int modifyUser(UserDTO dto) {
+		return this.sqlSessionTemplate.update("user.modify_user", dto);
 	}
 }

@@ -15,4 +15,8 @@ public interface UserService {
 
 	UserDTO getUser(String user_id);
 
+	String checkPw(UserDTO dto);
+
+	int modifyUser(UserDTO dto);
+
 }

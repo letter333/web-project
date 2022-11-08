@@ -1,5 +1,7 @@
 package com.project.sns.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -39,7 +41,7 @@ public class UserController {
 	
 	@PostMapping(value="/idChk")
 	public @ResponseBody  int idCheck(String user_id) {
-		int result = userService.checkJoin(user_id);
+		int result = this.userService.checkJoin(user_id);
 		return result;
 	}
 	
@@ -59,7 +61,7 @@ public class UserController {
 		
 		HttpSession session = request.getSession();
 		
-		String login = userService.login(dto);
+		String login = this.userService.login(dto);
 		if(p.matches(dto.getUser_pw(), login)) {
 			session.setAttribute("user_id", dto.getUser_id());
 			return "redirect:/";
@@ -84,7 +86,7 @@ public class UserController {
 	public ModelAndView userDetailGet(@RequestParam String user_id) {
 		ModelAndView mav = new ModelAndView();
 		
-		UserDTO dto = userService.getUser(user_id);
+		UserDTO dto = this.userService.getUser(user_id);
 		
 		mav.addObject("data", dto);
 		mav.setViewName("/user/detailUser");
@@ -96,11 +98,32 @@ public class UserController {
 	public ModelAndView userModifyGet(@RequestParam String user_id) {
 		ModelAndView mav = new ModelAndView();
 		
-		UserDTO dto = userService.getUser(user_id);
+		UserDTO dto = this.userService.getUser(user_id);
 		
 		mav.addObject("data", dto);
 		mav.setViewName("/user/modifyUser");		
 		
 		return mav;
 	}
+	
+	@PostMapping(value="/user_modify")
+	public String userModifyPost(@ModelAttribute UserDTO dto, RedirectAttributes rttr) {
+		PasswordEncoder p = new BCryptPasswordEncoder();
+		String myDBPw = this.userService.checkPw(dto);
+		
+		boolean checkPw = p.matches(dto.getUser_pw(), myDBPw);
+		
+		if(checkPw == true) {
+			this.userService.modifyUser(dto);
+			
+			return "redirect:/user_detail?user_id=" + dto.getUser_id();
+		} else {
+			rttr.addFlashAttribute("chkPwMsg", false);
+			
+			return "redirect:/user_modify?user_id=" + dto.getUser_id();
+		}
+		
+		
+	}
+	
 }

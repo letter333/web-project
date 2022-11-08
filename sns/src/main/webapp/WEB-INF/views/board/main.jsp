@@ -154,7 +154,7 @@
 
 			</c:forEach>
 		</div>
-		<div class="col-4 mt-5 ps-5">여기쯤 d3차트 하나?</div>
+		<div class="col-4 mt-5 ps-5" style="background-color: #e5e5e5;">여기쯤 d3차트 하나?</div>
 	</div>
 	<script>
 		$(window).on('load', function() {

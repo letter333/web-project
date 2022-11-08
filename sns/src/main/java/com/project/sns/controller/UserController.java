@@ -10,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -30,20 +32,21 @@ public class UserController {
 	
 	@PostMapping(value="/join")
 	public String createUserPost(UserDTO dto) {
-		String userId = this.userService.createUser(dto);
-		if(userId == null) {
-			return "/user/join";
-		} else {
-			return "redirect:login";
-		}
+		this.userService.createUser(dto);
+		return "redirect:login";
 	}
 	
-	// 회원가입 페이지 구현 후 아이디 중복체크 완성하기 
-	@PostMapping(value="idCheck")
-	public int idCheck(UserDTO dto) {
-		int result = userService.checkJoin(dto);
+	
+	@PostMapping(value="/idChk")
+	public @ResponseBody  int idCheck(String user_id) {
+		int result = userService.checkJoin(user_id);
 		return result;
 	}
+	
+	/*
+	 * @PostMapping(value="idCheck") public int idCheck(UserDTO dto) { int result =
+	 * userService.checkJoin(dto); return result; }
+	 */
 	
 	@GetMapping(value="/login")
 	public String login() {
@@ -59,10 +62,8 @@ public class UserController {
 		String login = userService.login(dto);
 		if(p.matches(dto.getUser_pw(), login)) {
 			session.setAttribute("user_id", dto.getUser_id());
-			System.out.println("로그인 성공");
 			return "redirect:/";
 		} else {
-			System.out.println("로그인 실패");
 			rttr.addFlashAttribute("message", false);
 			session.setAttribute("user_id", null);
 			
@@ -79,4 +80,27 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	@GetMapping(value="/user_detail")
+	public ModelAndView userDetailGet(@RequestParam String user_id) {
+		ModelAndView mav = new ModelAndView();
+		
+		UserDTO dto = userService.getUser(user_id);
+		
+		mav.addObject("data", dto);
+		mav.setViewName("/user/detailUser");
+		
+		return mav;
+	}
+	
+	@GetMapping(value="/user_modify")
+	public ModelAndView userModifyGet(@RequestParam String user_id) {
+		ModelAndView mav = new ModelAndView();
+		
+		UserDTO dto = userService.getUser(user_id);
+		
+		mav.addObject("data", dto);
+		mav.setViewName("/user/modifyUser");		
+		
+		return mav;
+	}
 }

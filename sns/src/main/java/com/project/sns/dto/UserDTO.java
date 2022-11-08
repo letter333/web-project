@@ -9,7 +9,6 @@ public class UserDTO {
 	private String user_email;
 	private String user_phone;
 	private String user_reg_date;
-	private String user_interest;
 	public String getUser_id() {
 		return user_id;
 	}
@@ -58,12 +57,6 @@ public class UserDTO {
 	public void setUser_reg_date(String user_reg_date) {
 		this.user_reg_date = user_reg_date;
 	}
-	public String getUser_interest() {
-		return user_interest;
-	}
-	public void setUser_interest(String user_interest) {
-		this.user_interest = user_interest;
-	}
 	public UserDTO(String user_id, String user_pw, String user_name, String user_gender, String user_birth,
 			String user_email, String user_phone, String user_reg_date, String user_interest) {
 		super();
@@ -75,7 +68,6 @@ public class UserDTO {
 		this.user_email = user_email;
 		this.user_phone = user_phone;
 		this.user_reg_date = user_reg_date;
-		this.user_interest = user_interest;
 	}
 	public UserDTO() {
 		super();

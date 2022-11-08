@@ -29,4 +29,8 @@ public interface FeedService {
 
 	List<UploadFileDTO> getFeedUploadFile(String feed_id);
 
+	int modifyFeed(Map<String, Object> map);
+
+	FeedDTO getFeedById(String feed_id);
+
 }

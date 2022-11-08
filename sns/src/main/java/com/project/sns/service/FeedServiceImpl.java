@@ -72,5 +72,15 @@ public class FeedServiceImpl implements FeedService {
 	public List<UploadFileDTO> getFeedUploadFile(String feed_id) {
 		return feedDao.getFeedUploadFile(feed_id);
 	}
+	
+	@Override
+	public int modifyFeed(Map<String, Object> map) {
+		return feedDao.modifyFeed(map);
+	}
+	
+	@Override
+	public FeedDTO getFeedById(String feed_id) {
+		return feedDao.getFeedById(feed_id);
+	}
 }
 

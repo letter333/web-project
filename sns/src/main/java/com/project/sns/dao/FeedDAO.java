@@ -56,4 +56,12 @@ public class FeedDAO {
 	public List<UploadFileDTO> getFeedUploadFile(String feed_id) {
 		return this.sqlSessionTemplate.selectList("feed.get_feed_upload_file", feed_id);
 	}
+	
+	public int modifyFeed(Map<String, Object> map) {
+		return this.sqlSessionTemplate.update("feed.modify_feed",  map);
+	}
+	
+	public FeedDTO getFeedById(String feed_id) {
+		return this.sqlSessionTemplate.selectOne("feed.get_feed_by_id", feed_id);
+	}
 }

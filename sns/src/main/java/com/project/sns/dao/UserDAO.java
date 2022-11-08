@@ -20,7 +20,11 @@ public class UserDAO {
 		return this.sqlSessionTemplate.selectOne("user.login", dto);
 	}
 	
-	public int checkJoin(UserDTO dto) {
-		return this.sqlSessionTemplate.selectOne("user.check_join", dto);
+	public int checkJoin(String user_id) {
+		return this.sqlSessionTemplate.selectOne("user.check_join", user_id);
+	}
+	
+	public UserDTO getUser(String user_id) {
+		return this.sqlSessionTemplate.selectOne("user.get_user", user_id);
 	}
 }

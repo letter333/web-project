@@ -143,4 +143,27 @@ public class FeedController {
 		feedService.deleteFeed(feed_id);
 		return "redirect:/";
 	}
+	
+	@PostMapping(value="/modify_feed")
+	public String modifyFeedPost(@RequestParam String feed_id) {
+		return "redirect:/modify_feed?feed_id=" + feed_id;
+	}
+	
+	@GetMapping(value="modify_feed")
+	public ModelAndView modifyFeedGet(@RequestParam String feed_id) {
+		FeedDTO dto = feedService.getFeedById(feed_id);
+		ModelAndView mav = new ModelAndView();
+		
+		mav.addObject("data", dto);
+		mav.setViewName("/board/modifyFeed");
+		
+		return mav;
+	}
+	
+	@PostMapping(value="modify_feed_execute")
+	public String modifyFeedExecute(@RequestParam Map<String, Object> map) {
+		feedService.modifyFeed(map);
+		
+		return "redirect:/";
+	}
 }

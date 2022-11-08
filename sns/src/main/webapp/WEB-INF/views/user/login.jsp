@@ -7,14 +7,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Instagram</title>
+<title>여기에 타이틀</title>
 <link href="${path }/resources/style/common.css" rel="stylesheet"
 	type="text/css" />
 <link href="${path }/resources/style/login.css" rel="stylesheet"
 	type="text/css" />
 <!-- favicon -->
-<link rel="icon" href="${path }/resources/img/favicon.png">
-<link rel="instagram-icon" href="${path }/resources/img/favicon.png">
+<%-- <link rel="icon" href="${path }/resources/img/favicon.png">
+<link rel="instagram-icon" href="${path }/resources/img/favicon.png"> --%>
 </head>
 <body>
 	<form action="" method="post">
@@ -31,7 +31,8 @@
 			<input type="password" class="input_login" name="user_pw" id="userPW"
 				placeholder="비밀번호">
 			<button type="submit" id="btn_login" disabled>로그인</button>
-			<span class="button_forgot">비밀번호를 잊으셨나요?</span>
+			<span class="button_forgot">비밀번호를 잊으셨나요?&nbsp;&nbsp;<a href="#">비밀번호 찾기</a></span>
+			<span><a href="/join">회원가입</a></span>
 		</div>
 	</form>
 	<script src="${path }/resources/js/login.js"></script>

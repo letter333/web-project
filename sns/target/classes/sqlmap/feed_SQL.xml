@@ -77,4 +77,16 @@
 	]]>
 </delete>
 
+<select id="get_feed_by_id" parameterType="string" resultType="com.project.sns.dto.FeedDTO">
+	<![CDATA[
+		select * from feed where feed_id = #{feed_id}
+	]]>
+</select>
+
+<update id="modify_feed" parameterType="hashMap">
+	<![CDATA[
+		update feed set feed_content = #{feed_content} where feed_id = #{feed_id}	
+	]]>
+</update>
+
 </mapper>

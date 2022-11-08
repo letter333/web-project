@@ -4,9 +4,9 @@
 
 <insert id="user_insert" parameterType="com.project.sns.dto.UserDTO" useGeneratedKeys="true" keyProperty="user_num">
 	<![CDATA[
-		insert into user(user_id, user_pw, user_name, user_gender, user_birth, user_email, user_phone, user_interest) 
+		insert into user(user_id, user_pw, user_name, user_gender, user_birth, user_email, user_phone) 
 		values 
-		(#{user_id}, #{user_pw}, #{user_name}, #{user_gender}, #{user_birth}, #{user_email}, #{user_phone}, #{user_interest});
+		(#{user_id}, #{user_pw}, #{user_name}, #{user_gender}, #{user_birth}, #{user_email}, #{user_phone});
 	]]>	
 </insert>
 
@@ -16,9 +16,15 @@
 	]]>
 </select>
 
-<select id="check_join" parameterType="com.project.sns.dto.UserDTO" resultType="int">
+<select id="check_join" parameterType="string" resultType="int">
 	<![CDATA[
 		select count(*) from user where user_id = #{user_id}
+	]]>
+</select>
+
+<select id="get_user" resultType="com.project.sns.dto.UserDTO">
+	<![CDATA[
+		select * from user where user_id = #{user_id}
 	]]>
 </select>
 </mapper>

@@ -5,8 +5,15 @@ public class CommentDTO {
 	private int comment_feed_id;
 	private String comment_user_id;
 	private String comment_content;
+	private String comment_created_at;
 	
 	
+	public String getComment_created_at() {
+		return comment_created_at;
+	}
+	public void setComment_created_at(String comment_created_at) {
+		this.comment_created_at = comment_created_at;
+	}
 	public int getComment_id() {
 		return comment_id;
 	}

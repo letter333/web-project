@@ -34,7 +34,12 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public int checkJoin(UserDTO dto) {
-		return userDao.checkJoin(dto);
+	public int checkJoin(String user_id) {
+		return userDao.checkJoin(user_id);
+	}
+	
+	@Override
+	public UserDTO getUser(String user_id) {
+		return userDao.getUser(user_id);
 	}
 }

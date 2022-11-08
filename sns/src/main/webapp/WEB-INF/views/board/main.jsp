@@ -44,7 +44,8 @@
 						<a href="/login"><i class="fa-solid fa-right-to-bracket fa-lg"></i></a>
 					</c:when>
 					<c:otherwise>
-						<a href="/"><i class="fa-solid fa-user fa-lg"></i></a>
+						<a href="/new_feed"><i class="fa-solid fa-square-plus fa-lg"></i></a>
+						<a href="/user_detail?user_id=${user_id }"><i class="fa-solid fa-user fa-lg"></i></a>
 						<a href="/logout"><i class="fa-solid fa-right-from-bracket fa-lg"></i></a>
 					</c:otherwise>
 				</c:choose>
@@ -80,7 +81,7 @@
 					<div class="carousel-inner">
 						<c:forEach var="uploadFile" items="${uploadFileList }">
 							<c:if test="${feed.feed_id eq uploadFile.feed_id }">
-								<div class="carousel-item active">
+								<div class="carousel-item">
 									<img src="/resources/uploadImg/${uploadFile.file_name }"
 										class="d-block w-100" alt="...">
 								</div>
@@ -108,13 +109,11 @@
 							<i class="fa-regular fa-heart">&nbsp;0</i>
 						</div>
 					</div>
-					<div class="border-top" id="comments${status.count }">
-						<!-- style="display: none;"> -->
+					<div class="border-top" id="comments${status.count }" style="display: none;">
 						<c:forEach var="comment" items="${commentList }">
 							<c:if test="${feed.feed_id eq comment.comment_feed_id }">
 							<div class="row">
-								<p class="m-2 col-10">${comment.comment_user_id}:
-									${comment.comment_content }</p>
+								<p class="m-2 col-10">${comment.comment_user_id} : ${comment.comment_content } <span class="time d-flex justify-content-end">${comment.comment_created_at }</span></p>
 								<c:if test="${user_id eq comment.comment_user_id }">
 									<form action="/delete_comment" method="post" id="comment_form" class="col-1 row text-center">
 										<input type="hidden" name="comment_feed_id" value="${feed.feed_id }" />
@@ -159,9 +158,7 @@
 	</div>
 	<script>
 		$(window).on('load', function() {
-			let carouselInner = $('.carousel-inner');
-			console.log(carouselInner);
-			
+			$('.carousel-item:first-child').addClass('active');
 		})
 		
 	</script>

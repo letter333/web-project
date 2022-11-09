@@ -38,10 +38,10 @@
 				OHAll
 			</a>
 			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search"
-					aria-label="Search">
+				<!-- <input class="form-control me-2" type="search" placeholder="Search"
+					aria-label="Search"> -->
 				<!-- 일단 보류 -->
-				<button class="btn btn-outline-success" type="submit">Search</button>
+				<!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
 			</form>
 			<div>
 				<a href="/"><i class="fa-solid fa-house fa-lg"></i></a>

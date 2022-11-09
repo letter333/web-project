@@ -161,7 +161,7 @@
 
 			</c:forEach>
 		</div>
-		<div class="col-4 mt-5 position-fixed-end position-fixed-top-50" style="line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock"></div>
+		<div class="col-4 mt-5 position-fixed-end position-fixed-top-50" style="line-height:250px; color:#666;font-size:80px; text-align:center;" id="clock"></div>
 		
 		<!-- <div class="col-4 mt-5 ps-5" style="background-color: #e5e5e5;">아무나 여기를 채워주세요..</div> -->
 	</div>
@@ -176,7 +176,7 @@
 			    var currentMinute = addZeros(currentDate.getMinutes() ,2);
 			    var currentSeconds =  addZeros(currentDate.getSeconds(),2);
 			    
-			    clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds; //날짜를 출력해 줌
+			    clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds + "<div style='font-size: 15px; text-align: center; margin-left: 20px;'>넣을게 없어서 시계를 넣어봤습니다.<br/> 시계 이쁘쥬?</div>"; //날짜를 출력해 줌
 			    
 			    setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
 			}

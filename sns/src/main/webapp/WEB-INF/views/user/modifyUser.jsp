@@ -16,15 +16,26 @@
     <link rel="stylesheet" href="${path }/resources/style/modify.css">
     <!--Iconscout CSS-->
     <link rel="stylesheet" href="http://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-<c:import url="../component/header.jsp" />
+ <c:import url="../component/header.jsp" /> 
 	<div>
 		<p style="text-align: center;">프로필 사진</p>
-		<img src="/resources/uploadImg/profileImg/${profileImg }" width=200 height=200 alt="profileImg" class="profileImg upload" />
+		<img src="/resources/uploadImg/profileImg/${profileImg }" alt="profileImg" class="profileImg upload" style="width: 200px; height: 200px;" />
 	</div>
-    <div class="container">
+    <div class="mycontainer">
         <header>내 정보 수정</header>
         <form action="user_modify" method="POST" enctype="multipart/form-data">
             <div class="form first">
@@ -132,6 +143,10 @@
 		realUpload.addEventListener('change', getImageFiles)
 
     </script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+		crossorigin="anonymous"></script>
 </body>
 </html>
 

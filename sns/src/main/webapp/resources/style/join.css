@@ -14,7 +14,7 @@ body{
     justify-content: center;
     /* background: linear-gradient(45deg, rgb(157, 236, 202), rgb(178, 118, 232));; */
 }
-.container{
+.mycontainer{
     position: relative;
     max-width: 900px;
     width: 100%;
@@ -24,13 +24,13 @@ body{
     background-color: #fff;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
-.container header{
+.mycontainer header{
     position: relative;
     font-size: 20px;
     font-weight: 600;
     color: #333;
 }
-.container header::before{
+.mycontainer header::before{
     content: "";
     position: absolute;
     left: 0;
@@ -40,19 +40,19 @@ body{
     border-radius: 8px;
     background-color: #4070f4;
 }
-.container form{
+.mycontainer form{
     position: relative;
     margin-top: 16px;
     min-height: 490px;
     background-color: #fff;
     overflow: hidden;
 }
-.container form .form{
+.mycontainer form .form{
     position: absolute;
     background-color: #fff;
     transition: 0.3s ease;
 }
-.container form .form.second{
+.mycontainer form .form.second{
     opacity: 0;
     pointer-events: none;
     transform: translateX(100%);
@@ -67,7 +67,7 @@ form.secActive .form.first{
     pointer-events: none;
     transform: translateX(-100%);
 }
-.container form .title{
+.mycontainer form .title{
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -75,13 +75,13 @@ form.secActive .form.first{
     margin: 6px 0;
     color: #333;
 }
-.container form .fields{
+.mycontainer form .fields{
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.container form .fields>.fieldset *{
+.mycontainer form .fields>.fieldset *{
     display: flex;;
     
 }
@@ -120,7 +120,7 @@ form .fields .input-field{
 .input-field input[type="date"]:valid{
     color: #333;
 }
-.container form button, .backBtn{
+.mycontainer form button, .backBtn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -136,7 +136,7 @@ form .fields .input-field{
     transition: all 0.3s linear;
     cursor: pointer;
 }
-.container form .btnText{
+.mycontainer form .btnText{
     font-size: 14px;
     font-weight: 400;
 }
@@ -160,10 +160,10 @@ form .buttons button , .backBtn{
 
 @media (max-width: 750px) {
     
-    .container form{
+    .mycontainer form{
         overflow-y: scroll;
     }
-    .container form::-webkit-scrollbar{
+    .mycontainer form::-webkit-scrollbar{
        display: none;
     }
     form .fields .input-field{

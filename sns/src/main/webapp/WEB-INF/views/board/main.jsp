@@ -9,6 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OHAll</title>
+<link rel="icon" href="${path }/resources/img/favicon.png">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -24,11 +25,11 @@
 	type="text/css" />
 </head>
 <body>
-	<nav class="navbar bg-light">
+	<%-- <nav class="navbar bg-light p-0 fixed-top">
 		<div class="container-xxl wrapper">
-			<a class="navbar-brand"> <img
-				src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="Logo"
-				width="30" height="24" class="d-inline-block align-text-top">
+			<a class="navbar-brand m-0 p-0"> <img
+				src="${path }/resources/img/logo-removebg.png" alt="Logo"
+				width="70" height="70" class="d-inline-block">
 				OHAll
 			</a>
 			<form class="d-flex" role="search">
@@ -51,8 +52,10 @@
 				</c:choose>
 			</div>
 		</div>
-	</nav>
-	<div class="feed wrapper m-auto row container p-0">
+	</nav> --%>
+	<c:import url="../component/header.jsp" />
+	
+	<div class="feed wrapper m-auto row container p-0 pt-5">
 		<div class="col-8 p-0">
 			<c:forEach var="feed" items="${feedList }" varStatus="status">
 
@@ -60,8 +63,12 @@
 					class="carousel slide border shadow rounded mt-5"
 					data-bs-ride="true">
 					<div class="rounded-top border-bottom profile-header">
-						<div class="profileImg rounded-circle ms-2">프로필 사진</div>
-						<div class="d-flex flex-column ms-3">
+						<c:forEach var="profile" items="${profileList }">
+							<c:if test="${feed.feed_user_id eq profile.profile_user_id }">						
+								<img src="/resources/uploadImg/profileImg/${profile.profile_file_name }" class="profileImg rounded-circle ms-2" style="border: 1px solid #aaa;"/>
+							</c:if>
+						</c:forEach>
+						<div class="d-flex flex-column ms-3" style="font-weight: 600;">
 							<div>${feed.feed_user_id }</div>
 							<div class="time">${feed.feed_created_at }</div>
 						</div>
@@ -101,12 +108,12 @@
 						<span class="visually-hidden">Next</span>
 					</button>
 					<div class="border-top rounded-bottom content position-relative">
-						<p class="m-2 d-inline-block">${feed.feed_content }</p>
+						<p class="m-2 d-inline-block" style="font-weight: 600;">${feed.feed_content }</p>
 						<div class="position-absolute comment-icons">
 						
 							<i class="fa-solid fa-comments" id="toggle"
 										onclick='$("#comments${status.count}").toggle(500)'>&nbsp;${feed.feed_comment_count }</i>
-							<i class="fa-regular fa-heart">&nbsp;0</i>
+							<!-- <i class="fa-regular fa-heart">&nbsp;0</i> -->
 						</div>
 					</div>
 					<div class="border-top" id="comments${status.count }" style="display: none;">
@@ -154,11 +161,41 @@
 
 			</c:forEach>
 		</div>
-		<div class="col-4 mt-5 ps-5" style="background-color: #e5e5e5;">여기쯤 d3차트 하나?</div>
+		<div class="col-4 mt-5 position-fixed-end position-fixed-top-50" style="line-height:250px; color:#666;font-size:100px; text-align:center;" id="clock"></div>
+		
+		<!-- <div class="col-4 mt-5 ps-5" style="background-color: #e5e5e5;">아무나 여기를 채워주세요..</div> -->
 	</div>
 	<script>
+			function printClock() {
+	    
+			    var clock = document.getElementById("clock");            // 출력할 장소 선택
+			    var currentDate = new Date();                                     // 현재시간
+			    var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+			    var amPm = 'AM'; // 초기값 AM
+			    var currentHours = addZeros(currentDate.getHours(),2); 
+			    var currentMinute = addZeros(currentDate.getMinutes() ,2);
+			    var currentSeconds =  addZeros(currentDate.getSeconds(),2);
+			    
+			    clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds; //날짜를 출력해 줌
+			    
+			    setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
+			}
+			
+			function addZeros(num, digit) { // 자릿수 맞춰주기
+				  var zero = '';
+				  num = num.toString();
+				  if (num.length < digit) {
+				    for (i = 0; i < digit - num.length; i++) {
+				      zero += '0';
+				    }
+				  }
+				  return zero + num;
+			}
+			
 		$(window).on('load', function() {
+			printClock()
 			$('.carousel-item:first-child').addClass('active');
+			
 		})
 		
 	</script>

@@ -9,16 +9,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OHAll : 정보 수정</title>
+	<link rel="icon" href="${path }/resources/img/favicon.png">
     <!--CSS-->
     <link rel="stylesheet" href="${path }/resources/style/join.css">
+    <link rel="stylesheet" href="${path }/resources/style/detail.css">
+    <link rel="stylesheet" href="${path }/resources/style/modify.css">
     <!--Iconscout CSS-->
     <link rel="stylesheet" href="http://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<c:import url="../component/header.jsp" />
+	<div>
+		<p style="text-align: center;">프로필 사진</p>
+		<img src="/resources/uploadImg/profileImg/${profileImg }" width=200 height=200 alt="profileImg" class="profileImg upload" />
+	</div>
     <div class="container">
         <header>내 정보 수정</header>
-        <form action="user_modify" method="POST">
+        <form action="user_modify" method="POST" enctype="multipart/form-data">
             <div class="form first">
                 <div class="details personal">
                     <span class="title">Personal Details</span>
@@ -78,6 +86,7 @@
                             <input type="number" name="user_phone" placeholder="휴대폰 번호" value="${data.user_phone }" required>
                         </div>
                         
+						<input type="file" class="real-upload" accept="image/*" name="uploadProfile" />
                         <input type="hidden" name="user_reg_date" value="${data.user_reg_date }" />
                         </div>
                     </div>
@@ -97,6 +106,32 @@
         </form>
     </div>    
     <script src="${path }/resources/js/join.js"></script>
+    <script>
+    	function getImageFiles(e) {
+    		const file = e.currentTarget.files[0]
+    		const profileImg = document.querySelector('.profileImg')
+    		
+    		if(!file.type.match('image/.*')) {
+					alert('이미지 파일만 업로드가 가능합니다.');
+					return;
+				}
+    		
+    		const reader = new FileReader()
+    		reader.onload = (e) => {
+    			profileImg.setAttribute('src', e.target.result)
+    			profileImg.setAttribute('data-file', file.name)
+    		}
+    		reader.readAsDataURL(file)
+    	}
+    
+    
+    	const realUpload = document.querySelector('.real-upload')
+    	const upload = document.querySelector('.upload')
+    	
+		upload.addEventListener('click', () => realUpload.click())
+		realUpload.addEventListener('change', getImageFiles)
+
+    </script>
 </body>
 </html>
 

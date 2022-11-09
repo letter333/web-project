@@ -1,10 +1,14 @@
 package com.project.sns.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,6 +41,7 @@ public class UserController {
 	@PostMapping(value="/join")
 	public String createUserPost(UserDTO dto) {
 		this.userService.createUser(dto);
+		this.userService.initProfile(dto);
 		return "redirect:login";
 	}
 	
@@ -87,8 +94,10 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		
 		UserDTO dto = this.userService.getUser(user_id);
+		String profileImg = this.userService.getProfileImg(dto);
 		
 		mav.addObject("data", dto);
+		mav.addObject("profileImg", profileImg);
 		mav.setViewName("/user/detailUser");
 		
 		return mav;
@@ -99,15 +108,17 @@ public class UserController {
 		ModelAndView mav = new ModelAndView();
 		
 		UserDTO dto = this.userService.getUser(user_id);
+		String profileImg = this.userService.getProfileImg(dto);
 		
 		mav.addObject("data", dto);
+		mav.addObject("profileImg", profileImg);
 		mav.setViewName("/user/modifyUser");		
 		
 		return mav;
 	}
 	
 	@PostMapping(value="/user_modify")
-	public String userModifyPost(@ModelAttribute UserDTO dto, RedirectAttributes rttr) {
+	public String userModifyPost(@ModelAttribute UserDTO dto, MultipartHttpServletRequest file ,HttpServletRequest req, RedirectAttributes rttr) {
 		PasswordEncoder p = new BCryptPasswordEncoder();
 		String myDBPw = this.userService.checkPw(dto);
 		
@@ -115,6 +126,33 @@ public class UserController {
 		
 		if(checkPw == true) {
 			this.userService.modifyUser(dto);
+			
+			String realFolder = req.getSession().getServletContext().getRealPath("/") + "/resources/uploadImg/profileImg/"; //서버 경로 + 저장 경로
+			File dir = new File(realFolder);
+			if(!dir.isDirectory()) {
+				dir.mkdirs();
+			}
+			
+			MultipartFile mf = file.getFile("uploadProfile");
+			
+			String genId = UUID.randomUUID().toString();
+			System.out.println(mf.getOriginalFilename());
+			String originalFileName = mf.getOriginalFilename();
+			
+			String saveFileName = genId + "." + FilenameUtils.getExtension(originalFileName);
+			String savePath = realFolder + saveFileName;
+			
+			try {
+				mf.transferTo(new File(savePath));
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			this.userService.updateProfile(originalFileName, saveFileName, dto.getUser_id());
 			
 			return "redirect:/user_detail?user_id=" + dto.getUser_id();
 		} else {

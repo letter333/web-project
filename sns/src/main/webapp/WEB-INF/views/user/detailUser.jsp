@@ -9,15 +9,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OHAll : 내 정보</title>
+    <link rel="icon" href="${path }/resources/img/favicon.png">
     <!--CSS-->
     <link rel="stylesheet" href="${path }/resources/style/join.css">
+    <link rel="stylesheet" href="${path }/resources/style/detail.css">
     <!--Iconscout CSS-->
     <link rel="stylesheet" href="http://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<c:import url="../component/header.jsp" />
 	<div>
-		여기 프사
+		<p style="text-align: center;">프로필 사진</p>
+		<img src="/resources/uploadImg/profileImg/${profileImg }" width=200 height=200 alt="profileImg" class="profileImg" />
 	</div>
 
     <div class="container">
@@ -30,7 +34,7 @@
                         <div class="input-field">
                             <label>아이디</label>
                             <input type="hidden" name="user_id" value="${user_id }" />
-                            <input type="text" id="user_id" dplaceholder="아이디" value="${user_id }" disabled>
+                            <input type="text" id="user_id" placeholder="아이디" value="${user_id }" disabled>
                         </div>
                         <div class="input-field">
                             <label>이름</label>

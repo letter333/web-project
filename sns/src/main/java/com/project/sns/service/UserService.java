@@ -19,4 +19,10 @@ public interface UserService {
 
 	int modifyUser(UserDTO dto);
 
+	String getProfileImg(UserDTO dto);
+
+	void updateProfile(String originalFileName, String saveFileName, String user_id);
+
+	int initProfile(UserDTO dto);
+
 }

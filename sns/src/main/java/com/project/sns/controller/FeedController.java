@@ -32,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
+import com.project.sns.dto.ProfileDTO;
 import com.project.sns.dto.UploadFileDTO;
 import com.project.sns.service.FeedService;
 
@@ -47,11 +48,12 @@ public class FeedController {
 		
 		List<FeedDTO> feedList = feedService.getFeed();
 		List<UploadFileDTO> uploadFileList = feedService.getUploadFile();
-	
+		List<ProfileDTO> profileList = feedService.getProfile();
 		List<CommentDTO> commentList = feedService.getComment();
-				
+						
 		mav.addObject("feedList", feedList);
 		mav.addObject("uploadFileList", uploadFileList);
+		mav.addObject("profileList", profileList);
 		mav.addObject("commentList", commentList);
 		mav.setViewName("/board/main");
 	
@@ -83,7 +85,6 @@ public class FeedController {
 		}
 		
 		List<MultipartFile> mf = mhsq.getFiles("uploadFile");
-		System.out.println(mf);
 		if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
 			
 		} else {

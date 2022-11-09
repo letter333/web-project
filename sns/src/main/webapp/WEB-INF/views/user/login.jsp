@@ -8,6 +8,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
 <title>OHAll : 로그인</title>
+<link rel="icon" href="${path }/resources/img/favicon.png">
 <link href="${path }/resources/style/common.css" rel="stylesheet"
 	type="text/css" />
 <link href="${path }/resources/style/login.css" rel="stylesheet"
@@ -17,6 +18,7 @@
 <link rel="instagram-icon" href="${path }/resources/img/favicon.png"> --%>
 </head>
 <body>
+<c:import url="../component/header.jsp" />
 	<form action="" method="post">
 		<div class="container">
 			<img class="logo_instagram"

@@ -28,15 +28,25 @@ file_num int auto_increment primary key,
 original_name varchar(255) not null,
 file_name varchar(255) not null,
 file_size int,
-file_save_path varchar(255),
 feed_id int
 );
 
 create table comment (
-comment_id int auto_increment primary key,
+comment_id int auto_increment primary key, 
 comment_feed_id int not null,
 comment_user_id varchar(30) not null,
 comment_content text not null,
 comment_created_at datetime default now()
 );
 
+create table profile_table (
+	profile_user_id varchar(30) not null primary key,
+    profile_original_name varchar(255) default '',
+    profile_file_name varchar(255) default 'default-image'
+);
+
+select * from feed;
+select * from comment;
+select * from file_table;
+select * from user;
+select * from profile_table;

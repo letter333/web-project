@@ -1,5 +1,6 @@
 package com.project.sns.dao;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -36,5 +37,17 @@ public class UserDAO {
 	
 	public int modifyUser(UserDTO dto) {
 		return this.sqlSessionTemplate.update("user.modify_user", dto);
+	}
+	
+	public String getProfileImg(UserDTO dto) {
+		return this.sqlSessionTemplate.selectOne("user.get_profile_img", dto);
+	}
+	
+	public int updateProfile(HashMap<String, Object> map) {
+		return this.sqlSessionTemplate.insert("user.update_user_profile", map);
+	}
+	
+	public int initProfile(UserDTO dto) {
+		return this.sqlSessionTemplate.insert("user.init_profile", dto);
 	}
 }

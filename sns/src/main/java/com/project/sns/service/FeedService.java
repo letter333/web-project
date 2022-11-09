@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
+import com.project.sns.dto.ProfileDTO;
 import com.project.sns.dto.UploadFileDTO;
 
 public interface FeedService {
@@ -32,5 +33,7 @@ public interface FeedService {
 	int modifyFeed(Map<String, Object> map);
 
 	FeedDTO getFeedById(String feed_id);
+
+	List<ProfileDTO> getProfile();
 
 }

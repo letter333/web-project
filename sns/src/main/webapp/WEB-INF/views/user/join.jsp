@@ -9,6 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OHAll : 회원가입</title>
+    <link rel="icon" href="${path }/resources/img/favicon.png">
     <!--CSS-->
     <link rel="stylesheet" href="${path }/resources/style/join.css">
     <!--Iconscout CSS-->
@@ -16,6 +17,7 @@
     <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+<c:import url="../component/header.jsp" />
     <div class="container">
         <header>회원가입</header>
         <form action="join" method="POST">

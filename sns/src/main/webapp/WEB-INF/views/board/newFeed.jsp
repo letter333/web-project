@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="icon" href="${path }/resources/img/favicon.png">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>OHAll : 피드 작성</title>
 <link
@@ -61,6 +62,7 @@ textarea {
 </style>
 </head>
 <body>
+<c:import url="../component/header.jsp" />
 	<div class="container">
 		<h2 style="text-align: center;">게시글 작성</h2>
 		<br>

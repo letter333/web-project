@@ -1,5 +1,6 @@
 package com.project.sns.service;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,25 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public int modifyUser(UserDTO dto) {
 		return userDao.modifyUser(dto);
+	}
+	
+	@Override
+	public String getProfileImg(UserDTO dto) {
+		return userDao.getProfileImg(dto);
+	}
+	
+	@Override
+	public void updateProfile(String originalFileName, String saveFileName, String user_id) {
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.put("profile_original_name", originalFileName);
+		hm.put("profile_file_name", saveFileName);
+		hm.put("profile_user_id", user_id);
+		
+		userDao.updateProfile(hm);
+	}
+	
+	@Override
+	public int initProfile(UserDTO dto) {
+		return userDao.initProfile(dto);
 	}
 }

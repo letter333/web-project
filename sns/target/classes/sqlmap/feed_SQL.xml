@@ -89,4 +89,10 @@
 	]]>
 </update>
 
+<select id="get_user_profile" resultType="com.project.sns.dto.ProfileDTO">
+	<![CDATA[
+		select * from profile_table;
+	]]>
+</select>
+
 </mapper>

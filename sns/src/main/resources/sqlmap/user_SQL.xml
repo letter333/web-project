@@ -40,5 +40,21 @@
 	]]>
 </update>
 
+<select id="get_profile_img" parameterType="com.project.sns.dto.UserDTO" resultType="string">
+	<![CDATA[
+		select profile_file_name from profile_table where profile_user_id = #{user_id}
+	]]>
+</select>
+
+<update id="update_user_profile" parameterType="hashMap">
+	update profile_table set profile_original_name = #{profile_original_name}, profile_file_name = #{profile_file_name} where profile_user_id = #{profile_user_id}
+</update>
+
+<insert id="init_profile" parameterType="com.project.sns.dto.UserDTO">
+	<![CDATA[
+		insert into profile_table(profile_user_id) values (#{user_id})
+	]]>
+</insert>
+
 </mapper>
   

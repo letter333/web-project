@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,7 @@ public class UserController {
 		return "/user/join";
 	}
 	
+	@Transactional
 	@PostMapping(value="/join")
 	public String createUserPost(UserDTO dto) {
 		this.userService.createUser(dto);
@@ -136,23 +138,24 @@ public class UserController {
 			MultipartFile mf = file.getFile("uploadProfile");
 			
 			String genId = UUID.randomUUID().toString();
-			System.out.println(mf.getOriginalFilename());
 			String originalFileName = mf.getOriginalFilename();
-			
-			String saveFileName = genId + "." + FilenameUtils.getExtension(originalFileName);
-			String savePath = realFolder + saveFileName;
-			
-			try {
-				mf.transferTo(new File(savePath));
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			if(!originalFileName.isEmpty()) {
+				String saveFileName = genId + "." + FilenameUtils.getExtension(originalFileName);
+				String savePath = realFolder + saveFileName;
+				
+				try {
+					mf.transferTo(new File(savePath));
+				} catch (IllegalStateException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				this.userService.updateProfile(originalFileName, saveFileName, dto.getUser_id());
 			}
 			
-			this.userService.updateProfile(originalFileName, saveFileName, dto.getUser_id());
 			
 			return "redirect:/user_detail?user_id=" + dto.getUser_id();
 		} else {
@@ -161,6 +164,17 @@ public class UserController {
 			return "redirect:/user_modify?user_id=" + dto.getUser_id();
 		}
 		
+		
+	}
+	
+	@PostMapping(value="/withdrawal")
+	public String userWithdrawal(String user_id, HttpServletRequest req) {
+		if(this.userService.deleteUser(user_id) == 1) {
+			req.getSession().invalidate();
+			return "redirect:/";
+		} else {
+			return "redirect:/detail?user_id=" + user_id;
+		}
 		
 	}
 	

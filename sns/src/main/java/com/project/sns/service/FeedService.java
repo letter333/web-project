@@ -18,7 +18,7 @@ public interface FeedService {
 
 	List<UploadFileDTO> getUploadFile();
 
-	void fileUpload(String originalFileName, String saveFileName, String savePath, long fileSize, int feed_id);
+	void fileUpload(String originalFileName, String saveFileName, long fileSize, int feed_id);
 
 	int newComment(CommentDTO dto);
 

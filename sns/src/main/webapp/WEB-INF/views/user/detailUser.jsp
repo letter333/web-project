@@ -132,13 +132,31 @@
                     <br>
                     <br>
                     <br>
-                <button style="background-color: blue;">
+                	<button style="background-color: blue;">
                     <span class="btnText">정보 수정</span>
                     <i class="uil uil-navigator"></i>
                     </button>
                     </div>
         </form>
+        <form action="/withdrawal" method="post" class="withdrawalForm" style="min-height: 0; margin: 0;">
+        	<input type="hidden" name="user_id" value="${user_id }" />
+        	<p class="withdrawalBtn" style="font-size: 14px; font-weight: 400; color: red; cursor: pointer; display: inline;">회원탈퇴</p>
+        </form>
     </div>
+    
+    <script>
+    	let withdrawalBtn = document.querySelector('.withdrawalBtn')
+    	let withdrawalForm = document.querySelector('.withdrawalForm')
+    	
+    	withdrawalBtn.addEventListener('click', () => {
+    			if(confirm('회원탈퇴?')) {
+    				withdrawalForm.submit()
+    			} else {
+    				return
+    			}
+	    	}
+   		)
+    </script>
     <script src="${path }/resources/js/join.js"></script>    
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

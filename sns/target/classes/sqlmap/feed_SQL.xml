@@ -17,9 +17,9 @@
 
 <insert id="file_upload" parameterType="HashMap">
 	<![CDATA[
-		insert into file_table (original_name, file_name, file_save_path, file_size, feed_id)
+		insert into file_table (original_name, file_name, file_size, feed_id)
 		values
-		(#{original_name}, #{file_name}, #{file_save_path}, #{file_size}, #{feed_id})
+		(#{original_name}, #{file_name}, #{file_size}, #{feed_id})
 	]]>
 </insert>
 

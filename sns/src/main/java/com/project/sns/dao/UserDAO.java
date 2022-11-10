@@ -50,4 +50,8 @@ public class UserDAO {
 	public int initProfile(UserDTO dto) {
 		return this.sqlSessionTemplate.insert("user.init_profile", dto);
 	}
+	
+	public int deleteUser(String user_id) {
+		return this.sqlSessionTemplate.delete("user.delete_user", user_id);
+	}
 }

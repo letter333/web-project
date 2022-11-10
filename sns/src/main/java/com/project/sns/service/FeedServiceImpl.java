@@ -29,7 +29,7 @@ public class FeedServiceImpl implements FeedService {
 	}
 
 	@Override
-	public void fileUpload(String originalFileName, String saveFileName, String savePath, long fileSize, int feed_id) {
+	public void fileUpload(String originalFileName, String saveFileName, long fileSize, int feed_id) {
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.put("original_name", originalFileName);
 		hm.put("file_name", saveFileName);

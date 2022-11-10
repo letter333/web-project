@@ -56,5 +56,14 @@
 	]]>
 </insert>
 
+<delete id="delete_user" parameterType="string">
+	<![CDATA[
+		{ call delete_user(
+		#{user_id}
+		)
+		}
+	]]>
+</delete>
+
 </mapper>
   

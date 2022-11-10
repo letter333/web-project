@@ -73,4 +73,9 @@ public class UserServiceImpl implements UserService {
 	public int initProfile(UserDTO dto) {
 		return userDao.initProfile(dto);
 	}
+	
+	@Override
+	public int deleteUser(String user_id) {
+		return userDao.deleteUser(user_id);
+	}
 }

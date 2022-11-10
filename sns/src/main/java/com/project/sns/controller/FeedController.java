@@ -100,7 +100,7 @@ public class FeedController {
 				mf.get(i).transferTo(new File(savePath));
 				System.out.println(savePath);
 				
-				feedService.fileUpload(originalFileName, saveFileName, savePath, fileSize, feed_id + 1);
+				feedService.fileUpload(originalFileName, saveFileName, fileSize, feed_id + 1);
 			}
 		}
 		
@@ -113,6 +113,8 @@ public class FeedController {
 		
 	}
 	
+	
+	@Transactional
 	@PostMapping(value="/new_comment")
 	public String newComment(CommentDTO comment) {
 		feedService.newComment(comment);

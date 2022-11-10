@@ -25,4 +25,6 @@ public interface UserService {
 
 	int initProfile(UserDTO dto);
 
+	int deleteUser(String user_id);
+
 }

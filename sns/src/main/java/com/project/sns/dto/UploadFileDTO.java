@@ -4,7 +4,6 @@ public class UploadFileDTO {
 	private int file_num;
 	private String original_name;
 	private String file_name;
-	private String file_save_path;
 	private long file_size;
 	private int feed_id;
 	public int getFile_num() {
@@ -37,13 +36,6 @@ public class UploadFileDTO {
 	public void setFeed_id(int feed_id) {
 		this.feed_id = feed_id;
 	}
-	
-	public String getFile_save_path() {
-		return file_save_path;
-	}
-	public void setFile_save_path(String file_save_path) {
-		this.file_save_path = file_save_path;
-	}
 	public UploadFileDTO() {
 		super();
 	}
@@ -53,7 +45,6 @@ public class UploadFileDTO {
 		this.file_num = file_num;
 		this.original_name = original_name;
 		this.file_name = file_name;
-		this.file_save_path = file_save_path;
 		this.file_size = file_size;
 		this.feed_id = feed_id;
 	}

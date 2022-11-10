@@ -56,7 +56,7 @@
 	<c:import url="../component/header.jsp" />
 	
 	<div class="feed wrapper m-auto row container p-0 pt-5">
-		<div class="col-8 p-0">
+		<div class="col-8 p-0 mb-5">
 			<c:forEach var="feed" items="${feedList }" varStatus="status">
 
 				<div id="carouselExampleIndicators${status.count }"
@@ -64,9 +64,21 @@
 					data-bs-ride="true">
 					<div class="rounded-top border-bottom profile-header">
 						<c:forEach var="profile" items="${profileList }">
-							<c:if test="${feed.feed_user_id eq profile.profile_user_id }">						
+						<c:choose>
+							<c:when test="${feed.feed_user_id eq profile.profile_user_id }">
+								<c:choose>
+									<c:when test="${profile.profile_file_name eq 'default-image.png' }">
+										<img src="${path }/resources/img/default-image.png" class="profileImg rounded-circle ms-2" style="border: 1px solid #aaa;"/>
+									</c:when>
+									<c:otherwise>
+										<img src="/resources/uploadImg/profileImg/${profile.profile_file_name }" class="profileImg rounded-circle ms-2" style="border: 1px solid #aaa;"/>
+									</c:otherwise>						
+								</c:choose>
+							</c:when>						
+						</c:choose>
+							<%-- <c:if test="${feed.feed_user_id eq profile.profile_user_id }">						
 								<img src="/resources/uploadImg/profileImg/${profile.profile_file_name }" class="profileImg rounded-circle ms-2" style="border: 1px solid #aaa;"/>
-							</c:if>
+							</c:if> --%>
 						</c:forEach>
 						<div class="d-flex flex-column ms-3" style="font-weight: 600;">
 							<div>${feed.feed_user_id }</div>
@@ -143,6 +155,17 @@
 								</div>
 							</c:when>
 							<c:otherwise>
+							<c:choose>
+							<c:when test="${feed.feed_user_id eq '탈퇴한 회원' }">
+								<div class="comment-wrapper">
+									<input class="form-control comment-input d-inline" type="text"
+										placeholder="탈퇴한 회원의 게시글 입니다." name="comment_content" readonly>
+									<button type="submit"
+										class="d-inline fa-solid fa-paper-plane fa-lg send-icon"
+										disabled></button>
+								</div>							
+							</c:when>
+							<c:otherwise>
 								<form action="/new_comment" method="post">
 									<input type="hidden" name="comment_feed_id"
 										value="${feed.feed_id }" /> <input type="hidden"
@@ -154,6 +177,8 @@
 											class="d-inline fa-solid fa-paper-plane fa-lg send-icon"></button>
 									</div>
 								</form>
+								</c:otherwise>
+							</c:choose>
 							</c:otherwise>
 						</c:choose>
 					</div>
@@ -161,7 +186,7 @@
 
 			</c:forEach>
 		</div>
-		<div class="col-4 mt-5 position-fixed-end position-fixed-top-50" style="line-height:250px; color:#666;font-size:80px; text-align:center;" id="clock"></div>
+		<div class="col-4 mt-5 position-fixed-end position-fixed-top" style="line-height:250px; color:#666;font-size:80px; text-align:center;" id="clock"></div>
 		
 		<!-- <div class="col-4 mt-5 ps-5" style="background-color: #e5e5e5;">아무나 여기를 채워주세요..</div> -->
 	</div>

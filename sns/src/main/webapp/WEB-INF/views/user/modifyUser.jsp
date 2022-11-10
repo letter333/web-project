@@ -33,7 +33,15 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
  <c:import url="../component/header.jsp" /> 
 	<div>
 		<p style="text-align: center;">프로필 사진</p>
-		<img src="/resources/uploadImg/profileImg/${profileImg }" alt="profileImg" class="profileImg upload" style="width: 200px; height: 200px;" />
+			<c:choose>
+				<c:when test="${profileImg eq 'default-image.png' }">
+					<img src="${path }/resources/img/default-image.png" class="profileImg upload" style="width: 200px; height: 200px;" />
+				</c:when>
+				<c:otherwise>
+					<img src="/resources/uploadImg/profileImg/${profileImg }" class="profileImg upload" style="width: 200px; height: 200px;"/>
+				</c:otherwise>						
+			</c:choose>
+		<%-- <img src="/resources/uploadImg/profileImg/${profileImg }" alt="profileImg" class="profileImg upload" style="width: 200px; height: 200px;" /> --%>
 	</div>
     <div class="mycontainer">
         <header>내 정보 수정</header>

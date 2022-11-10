@@ -131,7 +131,7 @@ textarea {
 			img.setAttribute('src', e.target.result);
 			img.setAttribute('name', 'uploadFile');
 			img.setAttribute('data-file', file.name);
-			img.setAttribute('onclick', 'deleteImg(this)');
+			li.setAttribute('onclick', 'deleteImg(this)');
 			li.appendChild(img);
 
 			return li;
@@ -147,8 +147,9 @@ textarea {
 				
 		function deleteImg(_this) {
 			index = $(_this).index();
+			console.log(index);
 			uploadFiles.splice(index, 1);
-			$(_this).parent().remove();
+			$(_this).remove();
 			
 			const dataTransfer = new DataTransfer();
 			let files = $('#file')[0].files;

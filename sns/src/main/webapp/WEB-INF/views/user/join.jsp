@@ -96,6 +96,8 @@
     <script src="${path }/resources/js/join.js"></script>
     <script>
     	$(function() {
+    		let flag_pw = false
+    		let flag_id = false
     		$('#user_pw').keyup(function() {
     			$('#checkNotice').html('');
     		});
@@ -109,8 +111,11 @@
     			} else {
     				$('#checkNotice').html('비밀번호 일치');
     				$('#checkNotice').attr('style', 'color:blue;');
-    				$('.submit').removeAttr('style');
-    				$('.submit').removeAttr('disabled');
+    				flag_pw = true
+    				if(flag_id == true && flag_pw == true) {
+	    				$('.submit').removeAttr('style');
+	    				$('.submit').removeAttr('disabled');    					
+    				}
     			}
     		})
     		
@@ -130,11 +135,14 @@
     	    					$('.submit').attr('disabled', true);
     	    					alert('이미 사용중인 아이디입니다.');
     	    				} else {
-    							$('.submit').attr('disabled', false);
     							$('#user_id').attr('readonly', true);
     							$('#idChk').attr('disabled', true);
     							$('#idChk').css('background-color', '#e3e3e3');
-    							$('.submit').removeAttr('style');
+    							flag_id = true
+    							if(flag_id == true && flag_pw == true) {
+    			    				$('.submit').removeAttr('style');
+    			    				$('.submit').removeAttr('disabled');    					
+    		    				}
     	    					alert('사용 가능한 아이디 입니다.');
     	    				}
     	    			},

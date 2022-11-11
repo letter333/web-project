@@ -68,7 +68,7 @@ public class FeedController {
 	@Transactional
 	@PostMapping(value="/new_feed")
 	public String newFeedPost(FeedDTO dto, HttpServletRequest req, MultipartHttpServletRequest mhsq, RedirectAttributes rttr) throws IllegalStateException, IOException {
-		HttpSession session = req.getSession();
+		//HttpSession session = req.getSession();
 		
 		Integer feed_id = feedService.getFeedMax();
 		
@@ -77,8 +77,9 @@ public class FeedController {
 		}
 		
 		int affectRowCount = feedService.newFeed(dto);
-		
-		String realFolder = req.getSession().getServletContext().getRealPath("/") + "/resources/uploadImg/"; //서버 경로 + 저장 경로
+		System.out.println("수수께끼는 풀렸나요");
+		String realFolder = req.getSession().getServletContext().getRealPath("/") + "resources\\uploadImg\\"; //서버 경로 + 저장 경로
+		System.out.println(realFolder);
 		File dir = new File(realFolder);
 		if(!dir.isDirectory()) {
 			dir.mkdirs();
@@ -86,7 +87,7 @@ public class FeedController {
 		
 		List<MultipartFile> mf = mhsq.getFiles("uploadFile");
 		if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-			
+			System.out.println("독을 풀었다.");
 		} else {
 			for(int i = 0; i < mf.size(); i++) {
 				String genId = UUID.randomUUID().toString();

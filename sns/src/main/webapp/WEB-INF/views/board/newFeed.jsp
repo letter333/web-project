@@ -18,17 +18,6 @@ integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+
 crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-	function goWrite(frm) {
-		var post_content = frm.post_content.value;
-		var post_writer_position = frm.post_writer_position.value;
-		if (post_content.trim() == '') {
-			alert("내용을 입력해주세요");
-			return false;
-		}
-		frm.submit();
-	}
-</script>
 <style>
 .container {
 	width: 1200px;
@@ -164,6 +153,22 @@ textarea {
 			$('#file')[0].files = dataTransfer.files;
 			
 			console.log(files)
+		}
+		
+		function goWrite(frm) {
+			var feed_content = frm.feed_content.value;
+			if (feed_content.trim() == '') {
+				alert("내용을 입력해주세요");
+				return;
+			}
+			let files = $('#file')[0].files;
+			
+			let fileArray = Array.from(files);
+			if(fileArray.length < 1) {
+				alert('이미지를 추가해주세요.')
+				return
+			}
+			frm.submit();
 		}
 	</script>
 	<script

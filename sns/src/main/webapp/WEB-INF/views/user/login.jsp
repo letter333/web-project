@@ -33,6 +33,11 @@ crossorigin="anonymous">
       <input type="password" class="form-control d-inline" id="inputPassword3" name="user_pw">
     </div>
   </div>
+  <c:if test="${message == false }">
+  		<script>
+  			alert('아이디 또는 비밀번호를 확인해 주세요')
+  		</script>
+  </c:if>
   <button type="submit" class="btn btn-primary">로그인</button>
   <a href="/join" style="font-size: 13px;">회원가입</a>
   <a href="" style="font-size: 13px;">비밀번호 잊음</a>

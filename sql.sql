@@ -20,6 +20,7 @@ feed_id int auto_increment primary key,
 feed_content text not null,
 feed_user_id varchar(30) not null,
 feed_comment_count int not null default 0,
+feed_like_count int not null default 0,
 feed_last_feed_id int default 1,
 feed_created_at datetime not null default now()
 );
@@ -58,5 +59,6 @@ select * from comment;
 select * from file_table;
 select * from user;
 select * from profile_table;
+select * from feed_like;
 
 insert into profile_table(profile_user_id) values ('test');

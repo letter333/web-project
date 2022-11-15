@@ -32,6 +32,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
+import com.project.sns.dto.LikeDTO;
 import com.project.sns.dto.ProfileDTO;
 import com.project.sns.dto.UploadFileDTO;
 import com.project.sns.service.FeedService;
@@ -77,8 +78,8 @@ public class FeedController {
 		}
 		
 		int affectRowCount = feedService.newFeed(dto);
-		System.out.println("수수께끼는 풀렸나요");
-		String realFolder = req.getSession().getServletContext().getRealPath("/") + "resources\\uploadImg\\"; //서버 경로 + 저장 경로
+		System.out.println("�닔�닔猿섎겮�뒗 ���졇�굹�슂");
+		String realFolder = req.getSession().getServletContext().getRealPath("/") + "resources\\uploadImg\\"; //�꽌踰� 寃쎈줈 + ���옣 寃쎈줈
 		System.out.println(realFolder);
 		File dir = new File(realFolder);
 		if(!dir.isDirectory()) {
@@ -87,7 +88,7 @@ public class FeedController {
 		
 		List<MultipartFile> mf = mhsq.getFiles("uploadFile");
 		if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-			System.out.println("독을 풀었다.");
+			System.out.println("�룆�쓣 ���뿀�떎.");
 		} else {
 			for(int i = 0; i < mf.size(); i++) {
 				String genId = UUID.randomUUID().toString();
@@ -169,5 +170,18 @@ public class FeedController {
 		feedService.modifyFeed(map);
 		
 		return "redirect:/";
+	}
+	
+	@ResponseBody
+	@GetMapping(value="/like")
+	public FeedDTO like(@RequestParam String num, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		LikeDTO likeDTO = new LikeDTO();
+		likeDTO.setLike_feed_id(Integer.parseInt(num));
+		likeDTO.setLike_user_id(session.getAttribute("user_id").toString());
+		
+		FeedDTO result = feedService.likeUp(likeDTO);
+		
+		return result;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
+import com.project.sns.dto.LikeDTO;
 import com.project.sns.dto.ProfileDTO;
 import com.project.sns.dto.UploadFileDTO;
 
@@ -35,5 +36,7 @@ public interface FeedService {
 	FeedDTO getFeedById(String feed_id);
 
 	List<ProfileDTO> getProfile();
+
+	FeedDTO likeUp(LikeDTO dto);
 
 }

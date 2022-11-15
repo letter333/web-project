@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
+import com.project.sns.dto.LikeDTO;
 import com.project.sns.dto.ProfileDTO;
 import com.project.sns.dto.UploadFileDTO;
 
@@ -68,5 +69,17 @@ public class FeedDAO {
 	
 	public List<ProfileDTO> getProfile() {
 		return this.sqlSessionTemplate.selectList("feed.get_user_profile");
+	}
+	
+	public FeedDTO likeUp(LikeDTO dto) {
+		FeedDTO feedDTO = new FeedDTO();
+		feedDTO.setFeed_id(dto.getLike_feed_id());
+		int result = this.sqlSessionTemplate.insert("feed.insert_like", dto);
+		if(result == 1) {
+			this.sqlSessionTemplate.update("feed.feed_like_up", dto);
+			feedDTO = this.sqlSessionTemplate.selectOne("feed.get_feed_by_id", feedDTO.getFeed_id().toString());
+		}
+		
+		return feedDTO;
 	}
 }

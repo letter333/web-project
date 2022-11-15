@@ -76,9 +76,6 @@
 								</c:choose>
 							</c:when>						
 						</c:choose>
-							<%-- <c:if test="${feed.feed_user_id eq profile.profile_user_id }">						
-								<img src="/resources/uploadImg/profileImg/${profile.profile_file_name }" class="profileImg rounded-circle ms-2" style="border: 1px solid #aaa;"/>
-							</c:if> --%>
 						</c:forEach>
 						<div class="d-flex flex-column ms-3" style="font-weight: 600;">
 							<div>${feed.feed_user_id }</div>
@@ -125,7 +122,7 @@
 						
 							<i class="fa-solid fa-comments" id="toggle"
 										onclick='$("#comments${status.count}").toggle(500)'>&nbsp;${feed.feed_comment_count }</i>
-							<!-- <i class="fa-regular fa-heart">&nbsp;0</i> -->
+							<i idx="${feed.feed_id}" class="like fa-regular fa-heart" id="like${feed.feed_id }">&nbsp;${feed.feed_like_count }</i>
 						</div>
 					</div>
 					<div class="border-top" id="comments${status.count }" style="display: none;">
@@ -221,6 +218,32 @@
 			printClock()
 			$('.carousel-item:first-child').addClass('active');
 			
+		})
+		
+		$(".like").click(function() {
+			let num = $(this).attr('idx');
+			console.log('like click');
+			
+			if($(this).attr('class') == 'like fa-regular fa-heart') {
+				console.log('빈하트 클릭');
+				
+				$.ajax({
+					url : 'like',
+					type : 'get',
+					data : {
+						num : num
+					},
+					success : function(result) {
+						let like = result.feed_like_count;
+						$('#like'+num).text(like);
+						console.log('좋아요 추가 성공');
+					},
+					error : function() {
+						alert('서버 에러')
+					}
+				})
+				$(this).attr('class', 'like fa-solid fa-heart')
+			}
 		})
 		
 	</script>

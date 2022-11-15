@@ -8,9 +8,16 @@ public class FeedDTO {
 	private String feed_user_id;
 	private String feed_created_at;
 	private int feed_comment_count;
+	private int feed_like_count;
 	private int feed_last_feed_id;
 	
 	
+	public int getFeed_like_count() {
+		return feed_like_count;
+	}
+	public void setFeed_like_count(int feed_like_count) {
+		this.feed_like_count = feed_like_count;
+	}
 	public int getFeed_last_feed_id() {
 		return feed_last_feed_id;
 	}
@@ -46,16 +53,6 @@ public class FeedDTO {
 	}
 	public void setFeed_created_at(String feed_created_at) {
 		this.feed_created_at = feed_created_at;
-	}
-	public FeedDTO(Integer feed_id, String feed_title, String feed_content, String feed_user_id, String feed_created_at) {
-		super();
-		this.feed_id = feed_id;
-		this.feed_content = feed_content;
-		this.feed_user_id = feed_user_id;
-		this.feed_created_at = feed_created_at;
-	}
-	public FeedDTO() {
-		super();
 	}
 	
 	

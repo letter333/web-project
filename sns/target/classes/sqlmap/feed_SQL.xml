@@ -95,4 +95,16 @@
 	]]>
 </select>
 
+<insert id="insert_like" parameterType="com.project.sns.dto.LikeDTO">
+	<![CDATA[
+		insert into feed_like (like_feed_id, like_user_id) values(#{like_feed_id}, #{like_user_id})
+	]]>
+</insert>
+
+<update id="feed_like_up" parameterType="com.project.sns.dto.LikeDTO">
+	<![CDATA[
+		update feed set feed_like_count = feed_like_count + 1 where feed_id = #{like_feed_id}  
+	]]>
+</update>
+
 </mapper>

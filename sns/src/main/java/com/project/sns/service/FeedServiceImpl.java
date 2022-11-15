@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.project.sns.dao.FeedDAO;
 import com.project.sns.dto.CommentDTO;
 import com.project.sns.dto.FeedDTO;
+import com.project.sns.dto.LikeDTO;
 import com.project.sns.dto.ProfileDTO;
 import com.project.sns.dto.UploadFileDTO;
 
@@ -87,6 +88,11 @@ public class FeedServiceImpl implements FeedService {
 	@Override
 	public List<ProfileDTO> getProfile() {
 		return feedDao.getProfile();
+	}
+	
+	@Override
+	public FeedDTO likeUp(LikeDTO dto) {
+		return feedDao.likeUp(dto);
 	}
 }
 

@@ -47,8 +47,11 @@ a:hover {
 	right: 5%;
 }
 
-#toggle {
+i:hover {
 	cursor: pointer;
+}
+i:focus {
+	outline: none;
 }
 
 .comment-input {

@@ -3,6 +3,7 @@ drop table feed;
 drop table user;
 drop table file_table;
 drop table profile_table;
+drop table feed_like;
 
 create table user(
 user_id varchar(30) primary key,
@@ -52,7 +53,7 @@ create table feed_like (
     like_feed_id int not null,
     like_user_id varchar(30) not null
 );
-
+ 
 
 select * from feed;
 select * from comment;

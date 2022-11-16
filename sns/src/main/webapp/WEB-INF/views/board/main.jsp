@@ -121,8 +121,34 @@
 						<div class="position-absolute comment-icons">
 						
 							<i class="fa-solid fa-comments" id="toggle"
-										onclick='$("#comments${status.count}").toggle(500)'>&nbsp;${feed.feed_comment_count }</i>
-							<i idx="${feed.feed_id}" class="like fa-regular fa-heart" id="like${feed.feed_id }">&nbsp;${feed.feed_like_count }</i>
+										onclick='$("#comments${status.count}").toggle(500)'>${feed.feed_comment_count }</i>
+										
+										
+										
+										
+										
+										
+										
+							<c:choose>
+								<c:when test="${empty user_id }">
+									<i class="like fa-regular fa-heart" id="like${feed.feed_id }" onclick='alert("로그인 후 사용가능합니다."); location.href="login"'>${feed.feed_like_count }</i>
+								</c:when>
+								<c:otherwise>
+									<i idx="${feed.feed_id}" class="like fa-regular fa-heart" id="like${feed.feed_id }">${feed.feed_like_count }</i>
+								</c:otherwise>
+							</c:choose>			
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
+							
 						</div>
 					</div>
 					<div class="border-top" id="comments${status.count }" style="display: none;">
@@ -217,16 +243,16 @@
 		$(window).on('load', function() {
 			printClock()
 			$('.carousel-item:first-child').addClass('active');
-			
 		})
 		
 		$(".like").click(function() {
 			let num = $(this).attr('idx');
 			console.log('like click');
 			
-			if($(this).attr('class') == 'like fa-regular fa-heart') {
-				console.log('빈하트 클릭');
-				
+			
+			if(num == null) {
+				return
+			} else if($(this).attr('class') == 'like fa-regular fa-heart') {
 				$.ajax({
 					url : 'like',
 					type : 'get',
@@ -236,13 +262,28 @@
 					success : function(result) {
 						let like = result.feed_like_count;
 						$('#like'+num).text(like);
-						console.log('좋아요 추가 성공');
 					},
 					error : function() {
 						alert('서버 에러')
 					}
 				})
 				$(this).attr('class', 'like fa-solid fa-heart')
+			} else if($(this).attr('class') == 'like fa-solid fa-heart') {
+				$.ajax({
+					url : 'like_cancel',
+					type : 'get',
+					data : {
+						num : num,
+					},
+					success : function(result) {
+						let like = result.feed_like_count;
+						$('#like'+num).text(like);
+					},
+					error : function() {
+						alert('서버 에러');
+					}
+				})
+				$(this).attr('class', 'like fa-regular fa-heart')
 			}
 		})
 		

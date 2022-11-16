@@ -51,13 +51,18 @@ public class FeedController {
 		List<UploadFileDTO> uploadFileList = feedService.getUploadFile();
 		List<ProfileDTO> profileList = feedService.getProfile();
 		List<CommentDTO> commentList = feedService.getComment();
-						
+		List<LikeDTO> likeList = null;
+		if(session.getAttribute("user_id") != null) {
+			likeList = feedService.getLikeAll(session.getAttribute("user_id").toString());
+		}
 		mav.addObject("feedList", feedList);
 		mav.addObject("uploadFileList", uploadFileList);
 		mav.addObject("profileList", profileList);
 		mav.addObject("commentList", commentList);
+		if(likeList != null) {
+			mav.addObject("likeList", likeList);
+		}
 		mav.setViewName("/board/main");
-	
 		return mav;
 	}
 	
@@ -78,9 +83,7 @@ public class FeedController {
 		}
 		
 		int affectRowCount = feedService.newFeed(dto);
-		System.out.println("�닔�닔猿섎겮�뒗 ���졇�굹�슂");
-		String realFolder = req.getSession().getServletContext().getRealPath("/") + "resources\\uploadImg\\"; //�꽌踰� 寃쎈줈 + ���옣 寃쎈줈
-		System.out.println(realFolder);
+		String realFolder = req.getSession().getServletContext().getRealPath("/") + "resources\\uploadImg\\";
 		File dir = new File(realFolder);
 		if(!dir.isDirectory()) {
 			dir.mkdirs();
@@ -88,7 +91,6 @@ public class FeedController {
 		
 		List<MultipartFile> mf = mhsq.getFiles("uploadFile");
 		if(mf.size() == 1 && mf.get(0).getOriginalFilename().equals("")) {
-			System.out.println("�룆�쓣 ���뿀�떎.");
 		} else {
 			for(int i = 0; i < mf.size(); i++) {
 				String genId = UUID.randomUUID().toString();
@@ -181,6 +183,20 @@ public class FeedController {
 		likeDTO.setLike_user_id(session.getAttribute("user_id").toString());
 		
 		FeedDTO result = feedService.likeUp(likeDTO);
+		
+		return result;
+	}
+	
+	@ResponseBody
+	@GetMapping(value="/like_cancel")
+	public FeedDTO likeCancel(@RequestParam String num, HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		LikeDTO likeDTO = new LikeDTO();
+		
+		likeDTO.setLike_feed_id(Integer.parseInt(num));
+		likeDTO.setLike_user_id(session.getAttribute("user_id").toString());
+		
+		FeedDTO result = feedService.likeCancel(likeDTO);
 		
 		return result;
 	}

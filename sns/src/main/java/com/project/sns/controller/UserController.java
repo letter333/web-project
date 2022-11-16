@@ -54,11 +54,6 @@ public class UserController {
 		return result;
 	}
 	
-	/*
-	 * @PostMapping(value="idCheck") public int idCheck(UserDTO dto) { int result =
-	 * userService.checkJoin(dto); return result; }
-	 */
-	
 	@GetMapping(value="/login")
 	public String login() {
 		return "/user/login";
@@ -129,7 +124,7 @@ public class UserController {
 		if(checkPw == true) {
 			this.userService.modifyUser(dto);
 			
-			String realFolder = req.getSession().getServletContext().getRealPath("/") + "/resources/uploadImg/profileImg/"; //서버 경로 + 저장 경로
+			String realFolder = req.getSession().getServletContext().getRealPath("/") + "/resources/uploadImg/profileImg/"; //�꽌踰� 寃쎈줈 + ���옣 寃쎈줈
 			File dir = new File(realFolder);
 			if(!dir.isDirectory()) {
 				dir.mkdirs();

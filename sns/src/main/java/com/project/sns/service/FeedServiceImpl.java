@@ -94,5 +94,15 @@ public class FeedServiceImpl implements FeedService {
 	public FeedDTO likeUp(LikeDTO dto) {
 		return feedDao.likeUp(dto);
 	}
+	
+	@Override
+	public FeedDTO likeCancel(LikeDTO dto) {
+		return feedDao.likeCancel(dto);
+	}
+	
+	@Override
+	public List<LikeDTO> getLikeAll(String like_user_id) {
+		return feedDao.getLikeAll(like_user_id);
+	}
 }
 

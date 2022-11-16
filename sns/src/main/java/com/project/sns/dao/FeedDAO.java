@@ -82,4 +82,20 @@ public class FeedDAO {
 		
 		return feedDTO;
 	}
+	
+	public FeedDTO likeCancel(LikeDTO dto) {
+		FeedDTO feedDTO = new FeedDTO();
+		feedDTO.setFeed_id(dto.getLike_feed_id());
+		int result = this.sqlSessionTemplate.delete("feed.delete_like", dto);
+		if(result == 1) {
+			this.sqlSessionTemplate.update("feed.feed_like_down", dto);
+			feedDTO = this.sqlSessionTemplate.selectOne("feed.get_feed_by_id", feedDTO.getFeed_id().toString());
+		}
+		
+		return feedDTO;
+	}
+	
+	public List<LikeDTO> getLikeAll(String like_user_id) {
+		return this.sqlSessionTemplate.selectList("feed.get_like_all", like_user_id);
+	}
 }

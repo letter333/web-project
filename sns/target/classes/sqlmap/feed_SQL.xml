@@ -101,10 +101,28 @@
 	]]>
 </insert>
 
+<delete id="delete_like" parameterType="com.project.sns.dto.LikeDTO">
+	<![CDATA[
+		delete from feed_like where like_feed_id = #{like_feed_id} and like_user_id = #{like_user_id}
+	]]>
+</delete>
+
 <update id="feed_like_up" parameterType="com.project.sns.dto.LikeDTO">
 	<![CDATA[
 		update feed set feed_like_count = feed_like_count + 1 where feed_id = #{like_feed_id}  
 	]]>
 </update>
+
+<update id="feed_like_down" parameterType="com.project.sns.dto.LikeDTO">
+	<![CDATA[
+		update feed set feed_like_count = feed_like_count - 1 where feed_id = #{like_feed_id}  
+	]]>
+</update>
+
+<select id="get_like_all" parameterType="string" resultType="com.project.sns.dto.LikeDTO">
+	<![CDATA[
+		select * from feed_like where like_user_id = #{like_user_id}
+	]]>
+</select>
 
 </mapper>

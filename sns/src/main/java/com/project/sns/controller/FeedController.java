@@ -51,7 +51,7 @@ public class FeedController {
 		List<UploadFileDTO> uploadFileList = feedService.getUploadFile();
 		List<ProfileDTO> profileList = feedService.getProfile();
 		List<CommentDTO> commentList = feedService.getComment();
-		List<LikeDTO> likeList = null;
+		List<Integer> likeList = null;
 		if(session.getAttribute("user_id") != null) {
 			likeList = feedService.getLikeAll(session.getAttribute("user_id").toString());
 		}
@@ -60,7 +60,7 @@ public class FeedController {
 		mav.addObject("profileList", profileList);
 		mav.addObject("commentList", commentList);
 		if(likeList != null) {
-			mav.addObject("likeList", likeList);
+			mav.addObject("likeList", likeList);			
 		}
 		mav.setViewName("/board/main");
 		return mav;

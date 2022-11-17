@@ -41,6 +41,6 @@ public interface FeedService {
 
 	FeedDTO likeCancel(LikeDTO dto);
 
-	List<LikeDTO> getLikeAll(String like_user_id);
+	List<Integer> getLikeAll(String like_user_id);
 
 }

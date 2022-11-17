@@ -95,7 +95,7 @@ public class FeedDAO {
 		return feedDTO;
 	}
 	
-	public List<LikeDTO> getLikeAll(String like_user_id) {
+	public List<Integer> getLikeAll(String like_user_id) {
 		return this.sqlSessionTemplate.selectList("feed.get_like_all", like_user_id);
 	}
 }

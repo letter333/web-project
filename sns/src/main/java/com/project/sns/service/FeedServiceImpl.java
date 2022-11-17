@@ -101,7 +101,7 @@ public class FeedServiceImpl implements FeedService {
 	}
 	
 	@Override
-	public List<LikeDTO> getLikeAll(String like_user_id) {
+	public List<Integer> getLikeAll(String like_user_id) {
 		return feedDao.getLikeAll(like_user_id);
 	}
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
@@ -134,14 +135,23 @@
 									<i class="like fa-regular fa-heart" id="like${feed.feed_id }" onclick='alert("로그인 후 사용가능합니다."); location.href="login"'>${feed.feed_like_count }</i>
 								</c:when>
 								<c:otherwise>
-									<i idx="${feed.feed_id}" class="like fa-regular fa-heart" id="like${feed.feed_id }">${feed.feed_like_count }</i>
+								<c:choose>
+									<c:when test="${empty likeList }">
+										<i idx="${feed.feed_id}" class="like fa-regular fa-heart" id="like${feed.feed_id }">${feed.feed_like_count }</i>
+									</c:when>
+									<c:otherwise>
+										<c:choose>
+											<c:when test="${fn:contains(likeList, feed.feed_id) }">
+												<i idx="${feed.feed_id}" class="like fa-solid fa-heart" id="like${feed.feed_id }">${feed.feed_like_count }</i>
+											</c:when>
+											<c:otherwise>
+												<i idx="${feed.feed_id}" class="like fa-regular fa-heart" id="like${feed.feed_id }">${feed.feed_like_count }</i>
+											</c:otherwise>
+										</c:choose>
+									</c:otherwise>
+								</c:choose>
 								</c:otherwise>
-							</c:choose>			
-							
-							
-							
-							
-							
+							</c:choose>
 							
 							
 							

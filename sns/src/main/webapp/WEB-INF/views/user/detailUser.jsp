@@ -76,7 +76,14 @@
 	</div>
 
     <div class="mycontainer">
-        <header>내 정보</header>
+	    <c:choose>
+	    	<c:when test="${user_id eq data.user_id }">
+		        <header>내 정보</header>
+	    	</c:when>
+	    	<c:otherwise>
+	    		<header>유저 정보</header>
+	    	</c:otherwise>
+	    </c:choose>
         <form action="user_modify" method="get">
             <div class="form first">
                 <div class="details personal">
@@ -84,8 +91,7 @@
                     <div class="fields">
                         <div class="input-field">
                             <label>아이디</label>
-                            <input type="hidden" name="user_id" value="${user_id }" />
-                            <input type="text" id="user_id" placeholder="아이디" value="${user_id }" disabled>
+                            <input type="text" id="user_id" placeholder="아이디" value="${data.user_id }" disabled>
                         </div>
                         <div class="input-field">
                             <label>이름</label>
@@ -141,16 +147,20 @@
                     <br>
                     <br>
                     <br>
-                	<button style="background-color: blue;">
-                    <span class="btnText">정보 수정</span>
-                    <i class="uil uil-navigator"></i>
-                    </button>
+                    	<c:if test="${user_id eq data.user_id }">
+		                	<button style="background-color: blue;">
+			                    <span class="btnText">정보 수정</span>
+			                    <i class="uil uil-navigator"></i>
+		                    </button>
+                    	</c:if>
                     </div>
         </form>
-        <form action="/withdrawal" method="post" class="withdrawalForm" style="min-height: 0; margin: 0;">
-        	<input type="hidden" name="user_id" value="${user_id }" />
-        	<p class="withdrawalBtn" style="font-size: 14px; font-weight: 400; color: red; cursor: pointer; display: inline;">회원탈퇴</p>
-        </form>
+       	<c:if test="${user_id eq data.user_id }">
+	        <form action="/withdrawal" method="post" class="withdrawalForm" style="min-height: 0; margin: 0;">
+	        	<input type="hidden" name="user_id" value="${user_id }" />
+	        	<p class="withdrawalBtn" style="font-size: 14px; font-weight: 400; color: red; cursor: pointer; display: inline;">회원탈퇴</p>
+	        </form>
+       	</c:if>
     </div>
     
     <script>

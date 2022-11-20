@@ -123,13 +123,6 @@
 						
 							<i class="fa-solid fa-comments" id="toggle"
 										onclick='$("#comments${status.count}").toggle(500)'>${feed.feed_comment_count }</i>
-										
-										
-										
-										
-										
-										
-										
 							<c:choose>
 								<c:when test="${empty user_id }">
 									<i class="like fa-regular fa-heart" id="like${feed.feed_id }" onclick='alert("로그인 후 사용가능합니다."); location.href="login"'>${feed.feed_like_count }</i>
@@ -152,13 +145,6 @@
 								</c:choose>
 								</c:otherwise>
 							</c:choose>
-							
-							
-							
-							
-							
-							
-							
 						</div>
 					</div>
 					<div class="border-top" id="comments${status.count }" style="display: none;">

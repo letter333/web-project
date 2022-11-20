@@ -52,7 +52,7 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     <div class="fields">
                         <div class="input-field">
                             <label>아이디</label>
-                            <input type="hidden" name="user_id" value="${data.user_id }" />
+                            <input type="hidden" name="user_id" value="${user_id }" />
                             <input type="text" id="user_id" placeholder="아이디" value="${data.user_id }" disabled>
                         </div>
                         <div class="input-field">
@@ -117,10 +117,12 @@ crossorigin="anonymous" referrerpolicy="no-referrer" />
                     		alert('비밀번호가 틀렸습니다.')                    	
                     	</script>                    
                     </c:if>
-                <button class="submit" style="background-color: blue;">
-                    <span class="btnText">내 정보 수정 완료</span>
-                    <i class="uil uil-navigator"></i>
-                    </button>
+                    <c:if test="${user_id eq data.user_id }">
+		                <button class="submit" style="background-color: blue;">
+		                    <span class="btnText">내 정보 수정 완료</span>
+		                    <i class="uil uil-navigator"></i>
+	                    </button>
+                    </c:if>
                     </div>
         </form>
     </div>    

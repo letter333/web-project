@@ -194,7 +194,7 @@ public class UserController {
 		
 	}
 	
-	// 회원탈퇴
+	// 회원탈퇴 
 	@PostMapping(value="/withdrawal")
 	public String userWithdrawal(String user_id, HttpServletRequest req) {
 		// 유저의 정보를 DB에서 삭제하는데 성공했다면

@@ -72,7 +72,7 @@
 										<img src="${path }/resources/img/default-image.png" class="profileImg rounded-circle ms-2" style="border: 1px solid #aaa;"/>
 									</c:when>
 									<c:otherwise>
-										<img src="/resources/uploadImg/profileImg/${profile.profile_file_name }" class="profileImg rounded-circle ms-2" style="border: 1px solid #aaa;"/>
+										<img src="${path }/resources/uploadImg/profileImg/${profile.profile_file_name }" class="profileImg rounded-circle ms-2" style="border: 1px solid #aaa;"/>
 									</c:otherwise>						
 								</c:choose>
 							</c:when>						

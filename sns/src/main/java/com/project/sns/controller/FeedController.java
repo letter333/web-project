@@ -90,7 +90,7 @@ public class FeedController {
 		// 게시글 내용 저장에 성공하면
 		if(affectRowCount == 1) {
 			// 사진 저장 경로
-			String realFolder = req.getSession().getServletContext().getRealPath("/") + "resources\\uploadImg\\";
+			String realFolder = req.getSession().getServletContext().getRealPath("/") + "resources/uploadImg/";
 			File dir = new File(realFolder);
 			// 폴더가 없으면 생성
 			if(!dir.isDirectory()) {
